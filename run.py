@@ -1,3 +1,5 @@
+# (c) ArtGames101 2017
+# This System was created by ArtGames101 and is under copyright notice!
 import sys, os, random, time, subprocess
 import config as c
 error = open("log/lasterror.txt", "w")
@@ -60,16 +62,63 @@ def main():
         print("(o). Disc Game ({})".format(game))
     else:
         print("\a")
+    print("g. Installed")
     print("s. Store")
+    print("\n0. Shutdown")
     choice = user_choice()
     if choice == "(o)":
         if game == "snake":
             subprocess.call(("python", "snake.py"))
         if game == "BattleSim":
             subprocess.call((sys.executable, "BattleSim/run.py"))
+    if choice == "g":
+        installed()
     if choice == "s":
         store()
+    if choice == "0":
+        shutdown()
+    else:
+        main()
 
+def shutdown():
+    clear_screen()
+    print("==========\n"
+          " Shutdown \n"
+          "==========\n")
+    print("1. Restart")
+    print("2. Shutdown")
+    print("0. Back")
+    choice = user_choice()
+    if choice == "1":
+        subprocess.call((sys.executable, "run.py"))
+    if choice == "2":
+        clear_screen()
+        print("\n"
+              "     /------------\      \n"
+              "    /              \     \n"
+              "   /                \    \n"
+              "  |                  |   \n"
+              "  |                  |   \n"
+              "  |__________________|   \n"
+              "  |                  |   \n"
+              "  |                  |   \n"
+              "  |                  |   \n"
+              "\n"
+              "        ArtSystem        \n")
+        sys.exit()
+def installed():
+    clear_screen()
+    print("=================\n"
+          " Installed Games \n"
+          "=================\n")
+    try:
+        import snake
+        print("\nSnake")
+    except:
+        print("\a")
+    print("If you have installed BattleSim we can not show it!")
+    input("\nBack")
+    main()
 def store():
     clear_screen()
     print("=================\n"
