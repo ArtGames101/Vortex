@@ -6,6 +6,6 @@ NAMETAG = "User"
 # Snake
 # BattleSim
 
-currentgame = "BattleSim"
+currentgame = "None"
 
 autoloadgames = False
