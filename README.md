@@ -1,7 +1,7 @@
 # ArtSystem
 A small gaming console for python!
 
-![Version](https://img.shields.io/badge/Version-v1.2%20ALPHA-blue.svg?style=social)
+![Version](https://img.shields.io/badge/Version-v1.3%20ALPHA-blue.svg?style=social)
 
 # Introduction
 
