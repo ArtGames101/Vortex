@@ -17,15 +17,17 @@ What things does ArtSystem have?
 * Settings
 * Username Setting
 * Game Passes
+* Statistics Checker
 
 And More!
 
 # Requirements
 
+* Windows or Linux Computer  (To actually run this)
 * Python 3 (for main startup (dont use anything else!))
 * Python 1 (for some games)
-* Internet (for store)
-* Python Imports (sys, os, random, time, subprocess)
+* Internet (for store and installations)
+* Python Imports (sys, os, random, time, subprocess, psutil)
 
 # Need Help?
 
