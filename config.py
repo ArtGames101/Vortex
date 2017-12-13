@@ -5,6 +5,7 @@ NAMETAG = "User"
 # Games:
 # Snake
 # BattleSim
+# squirrel
 
 currentgame = "None"
 
