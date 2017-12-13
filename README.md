@@ -32,3 +32,9 @@ And More!
 Need help contact us via email or Github issues
 
 `artgames101@outlook.com`
+
+
+# Links
+
+[Game Setup Help](https://github.com/ArtGames101/ArtSystem/wiki)
+[ArtGames Website](https://artgames101.jimdosite.com)
