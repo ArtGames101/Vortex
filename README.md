@@ -42,3 +42,6 @@ Need help contact us via email or Github issues
 
 
 [ArtGames Website](https://artgames101.jimdosite.com)
+
+
+![Discord](https://discordapp.com/api/guilds/391133290704273408/widget.json)
