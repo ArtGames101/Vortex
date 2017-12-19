@@ -37,6 +37,7 @@ What will you see next from us?!?!?!?
 * Windows or Linux Computer  (To actually run this)
 * Python 3 (for main startup (dont use anything else!))
 * Python 1 (for some games)
+* Pygame (For Python 1 Games)
 * Internet (for store and installations)
 * Python Imports (sys, os, random, time, subprocess, psutil)
 
