@@ -6,10 +6,10 @@ from data import gold as g
 try:
     from user import logindata as logind
     from user import loginpass as loginp
-    loginw = open("user/logindata.py", "w")
-    loginpw = open("user/loginpass.py", "w")
 except:
     pass
+loginw = open("user/logindata.py", "w")
+loginpw = open("user/loginpass.py", "w")
 error = open("log/lasterror.txt", "w")
 start = open("log/startlog.txt", "w")
 gold = open("data/gold.py", "w")
