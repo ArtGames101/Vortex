@@ -3,10 +3,13 @@
 import sys, os, random, time, subprocess, psutil
 import config as c
 from data import gold as g
-from user import logindata as logind
-from user import loginpass as loginp
-loginw = open("user/logindata.py", "w")
-loginpw = open("user/loginpass.py", "w")
+try:
+    from user import logindata as logind
+    from user import loginpass as loginp
+    loginw = open("user/logindata.py", "w")
+    loginpw = open("user/loginpass.py", "w")
+except:
+    pass
 error = open("log/lasterror.txt", "w")
 start = open("log/startlog.txt", "w")
 gold = open("data/gold.py", "w")
