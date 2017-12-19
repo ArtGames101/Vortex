@@ -54,7 +54,7 @@ Need help contact us via email or Github issues
 [Game Setup Help](https://github.com/ArtGames101/ArtSystem/wiki)
 
 
-[ArtGames Website](https://artgames101.jimdosite.com)
+[ArtGames Website](http://artgames101.webstarts.com/)
 
 
 [Discord](https://discord.gg/ThYkXk4)
