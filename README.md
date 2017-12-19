@@ -1,7 +1,8 @@
 # ArtSystem
+# Merry Christmas
 A small gaming console for python!
 
-![Version](https://img.shields.io/badge/Version-v1.5%20ALPHA-blue.svg?style=social)
+![Version](https://img.shields.io/badge/Version-v1.6%20ALPHA-blue.svg?style=social)
 
 # Introduction
 
