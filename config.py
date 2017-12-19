@@ -1,4 +1,9 @@
-NAMETAG = "User"
+from user import logindata as l
+
+try:
+    NAMETAG = l.USERNAME
+except:
+    NAMETAG = None
 
 #= -Settings- =#
 # Download Games from the store
@@ -7,6 +12,5 @@ NAMETAG = "User"
 # BattleSim
 # squirrel
 
-currentgame = "None"
+currentgame = ""
 
-autoloadgames = False

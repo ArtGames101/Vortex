@@ -3,10 +3,16 @@
 import sys, os, random, time, subprocess, psutil
 import config as c
 from data import gold as g
+from user import logindata as logind
+from user import loginpass as loginp
+loginw = open("user/logindata.py", "w")
+loginpw = open("user/loginpass.py", "w")
 error = open("log/lasterror.txt", "w")
+start = open("log/startlog.txt", "w")
 gold = open("data/gold.py", "w")
-games = ["snake", "BattleSim", "squirrel"]
+games = ["snake", "BattleSim", "squirrel", "intro"]
 gm = 3
+pa = 1
 ad = ["Go Gold and get ALPHA games that are comming soon!", "Squirrel (GO GOLD!) (Eat other squirrels to become the OMEGA SQUIRREL)", "Snake (a game where you have to eat apples!)", "BattleSim (The best battle simulator for python!)"]
 try:
     import snake
@@ -15,6 +21,18 @@ except Exception as e:
     error.write(exc)
 try:
     from BattleSim import run as battle
+except Exception as e:
+    exc = '{}: {}'.format(type(e).__name__, e)
+    error.write(exc)
+
+try:
+    import squirrel
+except Exception as e:
+    exc = '{}: {}'.format(type(e).__name__, e)
+    error.write(exc)
+
+try:
+    import introduction
 except Exception as e:
     exc = '{}: {}'.format(type(e).__name__, e)
     error.write(exc)
@@ -48,17 +66,83 @@ def loading():
           "\n"
           "        ArtSystem        \n")
     time.sleep(5)
-    main()
+    welcome()
+
+def welcome():
+    clear_screen()
+    print("=============\n"
+          "   Welcome   \n"
+          "=============\n")
+    print("\n"
+          "1. Login    | 2. Register")
+    choice = user_choice()
+    if choice == "1":
+        login()
+    if choice == "2":
+        register()
+
+def login():
+    clear_screen()
+    print("=========\n"
+          "  Login  \n"
+          "=========\n")
+    try:
+        print("{}\n".format(logind.USERNAME))
+    except:
+        register()
+    print("\n"
+          "Password: \n"
+          "")
+    choice = user_choice()
+    if choice == loginp.PASS:
+        main()
+    else:
+        login()
+
+def register():
+    clear_screen()
+    print("==========\n"
+          " Register \n"
+          "==========\n")
+    print("First Choose a Username!")
+    choice = user_choice()
+    loginw.write("USERNAME = '{}'".format(choice))
+    loginw.close()
+    registerp()
+
+def registerp():
+    clear_screen()
+    print("==========\n"
+          " Register \n"
+          "==========\n")
+    print("Now Choose a password")
+    choice = user_choice()
+    loginpw.write("PASS = '{}'".format(choice))
+    loginpw.close()
+    clear_screen()
+    print("Writing....")
+    time.sleep(5)
+    clear_screen()
+    input("Get Ready for restart!")
+    subprocess.call((sys.executable, "run.py"))
 
 def main():
     if c.currentgame == "snake":
         game = "snake"
     elif c.currentgame == "BattleSim":
         game = "BattleSim"
+    elif c.currentgame == "intro":
+        game = "intro"
     elif c.currentgame == "squirrel":
         game = "squirrel"
     else:
         game = "None"
+    size = '{:.2f} MiB'.format(__import__('psutil').Process().memory_full_info().uss / 1024 ** 2)
+    start.write("Name : {}\n"
+                "\n"
+                "CGame : {}\n"
+                "\n"
+                "Size : {}".format(c.NAMETAG, game, size))
     clear_screen()
     print("==============================\n"
           "=. {}        |  ArtSystem     \n"
@@ -79,6 +163,8 @@ def main():
             subprocess.call(("python", "squirrel.py"))
         if game == "BattleSim":
             subprocess.call((sys.executable, "BattleSim/run.py"))
+        if game == "intro":
+            subprocess.call((sys.executable, "introduction.py"))
     if choice == "g":
         installed()
     if choice == "s":
@@ -97,6 +183,8 @@ def menu():
           "========\n")
     print("Games in Store:\n"
           "{}".format(gm))
+    print("Passes in Store:\n"
+          "{}".format(pa))
     print("Size of ArtSystem:\n"
           "{}".format(size))
     input("\nBack")
@@ -179,7 +267,7 @@ def storegames():
           "=================\n")
     print("1. Snake  (Pygame)")
     print("2. Battle Sim  (ArtGames101)")
-    print("3. Squirrel (Pygame)")
+    print("3. Squirrel (Pygame)  (GOLD!)")
     print("0. Back")
     choice = user_choice()
     if choice == "1":
@@ -205,7 +293,7 @@ def storesquirrel():
             import squirrel
             print("Installed!")
         except:
-            print("i. Install  (With Gold Pass!")
+            print("i. Install  (With Gold Pass!)")
     else:
         print("Go Gold to install!")
     print("0. Back")
@@ -291,15 +379,4 @@ def gogold():
     if choice == "0":
         passes()
 
-
-if c.autoloadgames == True:
-    if currentgame == "snake":
-        subprocess.call(("python", "snake.py"))
-    if currentgame == "BattleSim":
-        subprocess.call((sys.executable, "BattleSim/run.py"))
-    if currentgame == "squirrel":
-        subprocess.call(("python", "squirrel.py"))
-    else:
-        loading()
-else:
-    loading()
+loading()
