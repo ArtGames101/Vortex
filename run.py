@@ -1,5 +1,6 @@
 # (c) ArtGames101 2017
-# This System was created by ArtGames101 and is under copyright notice!
+# This Console was created by ArtGames101 and is under copyright notice!
+
 import sys, os, random, time, subprocess, psutil
 import config as c
 from data import gold as g
@@ -13,10 +14,11 @@ loginpw = open("user/loginpass.py", "w")
 error = open("log/lasterror.txt", "w")
 start = open("log/startlog.txt", "w")
 gold = open("data/gold.py", "w")
+santa = True
 games = ["snake", "BattleSim", "squirrel", "intro"]
 gm = 3
 pa = 1
-ad = ["Go Gold and get ALPHA games that are comming soon!", "Squirrel (GO GOLD!) (Eat other squirrels to become the OMEGA SQUIRREL)", "Snake (a game where you have to eat apples!)", "BattleSim (The best battle simulator for python!)"]
+ad = ["Go Gold and get ALPHA games that are comming soon!", "Squirrel (GO GOLD!) (Eat other squirrels to become the OMEGA SQUIRREL)", "Snake (a game where you have to eat apples!)", "BattleSim (The best battle simulator for python!)", "Merry Christmas!"]
 try:
     import snake
 except Exception as e:
@@ -73,16 +75,23 @@ def loading():
 
 def welcome():
     clear_screen()
-    print("=============\n"
-          "   Welcome   \n"
-          "=============\n")
+    print("=================\n"
+          "+   +Welcome+   +\n"
+          "=================\n")
     print("\n"
-          "1. Login    | 2. Register")
+          "1. Login    | 2. Register\n"
+          "       3. Refer          \n")
     choice = user_choice()
     if choice == "1":
         login()
     if choice == "2":
         register()
+    if choice == "3":
+        clear_screen()
+        print("Help the community by refering ArtSystem to someone!")
+        print("\n\nURL : https://github.com/ArtGames101/ArtSystem")
+        input("\nBack")
+        welcome()
 
 def login():
     clear_screen()
@@ -156,6 +165,10 @@ def main():
         print("\a")
     print("g. Installed")
     print("s. Store")
+    if santa == True:
+        print("sa. Santa's Gift!")
+    else:
+        pass
     print("\n{}".format(random.choice(ad)))
     print("\n0. Shutdown")
     choice = user_choice()
@@ -172,12 +185,37 @@ def main():
         installed()
     if choice == "s":
         store()
+    if choice == "sa":
+        if santa == True:
+            santagift()
+        else:
+            main()
     if choice == "=":
         menu()
     if choice == "0":
         shutdown()
     else:
         main()
+
+def santagift():
+    clear_screen()
+    print("You will need internet for this if you have no internet push enter!")
+    print("\n"
+          "Merry Christmas!")
+    print("\nc. Collect")
+    choice = user_choice()
+    if choice == "c":
+        subprocess.call(("git", "clone", "https://github.com/artsystem101/squirrel.git"))
+        subprocess.call(("git", "clone", "https://github.com/artsystem101/snake.git"))
+        subprocess.call(("git", "clone", "https://github.com/ArtGames101/BattleSim.git"))
+        gold.write("gold = True")
+        input("All ArtSystem Games have been installed and also you have recieved Gold!")
+        input("Unpack snake and squirrel from their folders!")
+        main()
+    else:
+        main()
+        
+        
 def menu():
     size = '{:.2f} MiB'.format(__import__('psutil').Process().memory_full_info().uss / 1024 ** 2)
     clear_screen()
@@ -192,6 +230,7 @@ def menu():
           "{}".format(size))
     input("\nBack")
     main()
+
 def shutdown():
     clear_screen()
     print("==========\n"
@@ -199,6 +238,7 @@ def shutdown():
           "==========\n")
     print("1. Restart")
     print("2. Shutdown")
+    print("3. Wait")
     print("0. Back")
     choice = user_choice()
     if choice == "1":
@@ -220,6 +260,39 @@ def shutdown():
         sys.exit(1)
     if choice == "0":
         main()
+
+def wait():
+    clear_screen()
+    print("========\n"
+          "  Wait  \n"
+          "========\n")
+    print("10. 10 Secs")
+    print("20. 20 Secs")
+    print("30. 30 Secs")
+    print("40. 40 Secs")
+    print("50. 50 Secs")
+    print("60. 1 Min")
+    choice = user_choice()
+    if choice == "10":
+        time.sleep(10)
+        main()
+    if choice == "20":
+        time.sleep(20)
+        main()
+    if choice == "30":
+        time.sleep(30)
+        main()
+    if choice == "40":
+        time.sleep(40)
+        main()
+    if choice == "50":
+        time.sleep(50)
+        main()
+    if choice == "60":
+        time.sleep(60)
+        main()
+
+
 def installed():
     clear_screen()
     print("=================\n"
