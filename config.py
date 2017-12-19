@@ -14,6 +14,7 @@ except:
 # Snake
 # BattleSim
 # squirrel
+# Santa  (Christmas Only!)
 
-currentgame = ""
+currentgame = "Santa"
 

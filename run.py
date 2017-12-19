@@ -15,7 +15,7 @@ error = open("log/lasterror.txt", "w")
 start = open("log/startlog.txt", "w")
 gold = open("data/gold.py", "w")
 santa = True
-games = ["snake", "BattleSim", "squirrel", "intro"]
+games = ["snake", "BattleSim", "squirrel", "Santa"]
 gm = 3
 pa = 1
 ad = ["Go Gold and get ALPHA games that are comming soon!", "Squirrel (GO GOLD!) (Eat other squirrels to become the OMEGA SQUIRREL)", "Snake (a game where you have to eat apples!)", "BattleSim (The best battle simulator for python!)", "Merry Christmas!"]
@@ -32,6 +32,12 @@ except Exception as e:
 
 try:
     import squirrel
+except Exception as e:
+    exc = '{}: {}'.format(type(e).__name__, e)
+    error.write(exc)
+
+try:
+    import santa
 except Exception as e:
     exc = '{}: {}'.format(type(e).__name__, e)
     error.write(exc)
@@ -143,8 +149,8 @@ def main():
         game = "snake"
     elif c.currentgame == "BattleSim":
         game = "BattleSim"
-    elif c.currentgame == "intro":
-        game = "intro"
+    elif c.currentgame == "Santa":
+        game = "Santa"
     elif c.currentgame == "squirrel":
         game = "squirrel"
     else:
@@ -156,9 +162,9 @@ def main():
                 "\n"
                 "Size : {}".format(c.NAMETAG, game, size))
     clear_screen()
-    print("==============================\n"
-          "=. {}        |  ArtSystem     \n"
-          "==============================\n".format(c.NAMETAG))
+    print("========================================================\n"
+          "=. {}        |  {}     \n"
+          "========================================================\n".format(c.NAMETAG, time.ctime()))
     if game in games:
         print("(o). Disc Game ({})".format(game))
     else:
@@ -179,8 +185,8 @@ def main():
             subprocess.call(("python", "squirrel.py"))
         if game == "BattleSim":
             subprocess.call((sys.executable, "BattleSim/run.py"))
-        if game == "intro":
-            subprocess.call((sys.executable, "introduction.py"))
+        if game == "Santa":
+            subprocess.call((sys.executable, "SantasLittleHelper/santa.py"))
     if choice == "g":
         installed()
     if choice == "s":
@@ -205,6 +211,7 @@ def santagift():
     print("\nc. Collect")
     choice = user_choice()
     if choice == "c":
+        subprocess.call(("git", "clone", "https://github.com/artsystem101/SantasLittleHelper.git"))
         subprocess.call(("git", "clone", "https://github.com/artsystem101/squirrel.git"))
         subprocess.call(("git", "clone", "https://github.com/artsystem101/snake.git"))
         subprocess.call(("git", "clone", "https://github.com/ArtGames101/BattleSim.git"))
@@ -344,6 +351,7 @@ def storegames():
     print("1. Snake  (Pygame)")
     print("2. Battle Sim  (ArtGames101)")
     print("3. Squirrel (Pygame)  (GOLD!)")
+    print("4. Santas Little Helper (ArtGames101)  (Christmas Gift!)")
     print("0. Back")
     choice = user_choice()
     if choice == "1":
@@ -352,8 +360,40 @@ def storegames():
         storebattlesim()
     if choice == "3":
         storesquirrel()
+    if choice == "4":
+        slh()
     if choice == "0":
         store()
+
+def slh():
+    clear_screen()
+    print("Santa's Little Helper\n"
+          "\n"
+          "Description:\n"
+          "Help Santa Deliver Presents to Children\n"
+          "\n"
+          "Publisher:\n"
+          "ArtGames101\n")
+    if santa == True:
+        try:
+            import SantasLittleHelper
+            print("Installed!")
+        except:
+            print("i. Install  (For Christmas)")
+    else:
+        print("Install on Christmas Updates!")
+    print("0. Back")
+    choice = user_choice()
+    if choice == "i":
+        if santa == True:
+            subprocess.call(("git", "clone", "https://github.com/artsystem101/SantasLittleHelper.git"))
+            input("Installed!")
+            input("Merry Christmas (Your game does not need unpacking!)")
+            slh()
+        else:
+            slh()
+    if choice == "0":
+        storegames()
 
 def storesquirrel():
     clear_screen()
