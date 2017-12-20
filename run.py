@@ -13,12 +13,18 @@ error = open("log/lasterror.txt", "w")
 start = open("log/startlog.txt", "w")
 gold = open("data/gold.py", "w")
 santa = True
-games = ["snake", "BattleSim", "squirrel", "Santa"]
+games = ["snake", "BattleSim", "squirrel", "Santa", "Tetris"]
 gm = 3
 pa = 1
 ad = ["Go Gold and get ALPHA games that are comming soon!", "Squirrel (GO GOLD!) (Eat other squirrels to become the OMEGA SQUIRREL)", "Snake (a game where you have to eat apples!)", "BattleSim (The best battle simulator for python!)", "Merry Christmas!"]
 try:
     import snake
+except Exception as e:
+    exc = '{}: {}'.format(type(e).__name__, e)
+    error.write(exc)
+
+try:
+    import tetris
 except Exception as e:
     exc = '{}: {}'.format(type(e).__name__, e)
     error.write(exc)
@@ -113,7 +119,10 @@ def login():
     print("=========\n"
           "  Login  \n"
           "=========\n")
-    print("Guest Passwords are: guestie")
+    if logind.USERNAME == 'Guest':
+        print("Guest Passwords are: guestie")
+    else:
+        pass
     try:
         print("{}\n".format(logind.USERNAME))
     except:
@@ -159,6 +168,8 @@ def registerp():
 def main():
     if c.currentgame == "snake":
         game = "snake"
+    if c.currentgame == "Tetris":
+        game = "Tetris"
     elif c.currentgame == "BattleSim":
         game = "BattleSim"
     elif c.currentgame == "Santa":
@@ -181,7 +192,7 @@ def main():
         print("(o). Disc Game ({})".format(game))
     else:
         print("\a")
-    print("g. Installed")
+    print("c. Changelog")
     print("s. Store")
     print("set. Settings")
     if santa == True:
@@ -194,16 +205,18 @@ def main():
     if choice == "(o)":
         if game == "snake":
             subprocess.call(("python", "snake.py"))
+        if game == "Tetris":
+            subprocess.call(("python", "tetris.py"))
         if game == "squirrel":
             subprocess.call(("python", "squirrel.py"))
         if game == "BattleSim":
             subprocess.call((sys.executable, "BattleSim/run.py"))
         if game == "Santa":
             subprocess.call((sys.executable, "SantasLittleHelper/santa.py"))
-    if choice == "g":
-        installed()
     if choice == "s":
         store()
+    if choice == "c":
+        changelog()
     if choice == "set":
         settings()
     if choice == "sa":
@@ -368,24 +381,35 @@ def wait():
         main()
 
 
-def installed():
+def changelog():
     clear_screen()
     print("=================\n"
-          " Installed Games \n"
+          "    Changelog    \n"
           "=================\n")
-    try:
-        import snake
-        print("\nSnake")
-    except:
-        print("\a")
-    try:
-        import squirrel
-        print("\nSquirrel")
-    except:
-        print("\a")
-    print("If you have installed BattleSim we can not show it!")
+    print("Whats New?")
+    print("\n"
+          "* Added Changelog\n"
+          "* Removed Installed Page (Wasn't Functional!)\n"
+          "* Added Tetris Game to Store")
+    print("\n"
+          "<. Last Update   | 0. Back")
+    choice = user_choice()
+    if choice == "<":
+        lastupdate()
+    if choice == "0":
+        main()
+
+def lastupdate():
+    clear_screen()
+    print("=================\n"
+          "    Changelog    \n"
+          "=================\n")
+    print("Whats New?")
+    print("\n"
+          "Cant Read!!!")
     input("\nBack")
-    main()
+    changelog()
+    
 def store():
     clear_screen()
     print("=================\n"
@@ -411,6 +435,8 @@ def passes():
     choice = user_choice()
     if choice == "1":
         gogold()
+
+
 def storegames():
     clear_screen()
     print("=================\n"
@@ -420,6 +446,7 @@ def storegames():
     print("2. Battle Sim  (ArtGames101)")
     print("3. Squirrel (Pygame)  (GOLD!)")
     print("4. Santas Little Helper (ArtGames101)  (Christmas Gift!)")
+    print("5. Tetris  (ArtGames101)")
     print("0. Back")
     choice = user_choice()
     if choice == "1":
@@ -430,8 +457,34 @@ def storegames():
         storesquirrel()
     if choice == "4":
         slh()
+    if choice == "5":
+        storetetris()
     if choice == "0":
         store()
+
+def storetetris():
+    clear_screen()
+    print("Tetris\n"
+          "\n"
+          "Description:\n"
+          "Stack Blocks and get as many rows as you can!\n"
+          "\n"
+          "Publisher:\n"
+          "ArtGames101\n")
+    try:
+        import tetris
+        print("\nInstalled!")
+    except:
+        print("i. Install")
+    print("0. Back")
+    choice = user_choice()
+    if choice == "i":
+        subprocess.call(("git", "clone", "https://github.com/artsystem101/tetris.git"))
+        input("Installed!")
+        input("To Unpack tetris game move tetris.py & the mid files from the tetris folder!")
+        storetetris()
+    if choice == "0":
+        storegames()
 
 def slh():
     clear_screen()
