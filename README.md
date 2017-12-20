@@ -2,7 +2,7 @@
 # Merry Christmas
 A Fast Growing Gaming Console for Python!!!!!
 
-![Version](https://img.shields.io/badge/Version-v1.8-blue.svg?style=social)
+![Version](https://img.shields.io/badge/Version-v1.9-blue.svg?style=social)
 
 # Introduction
 
