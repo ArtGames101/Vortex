@@ -1,13 +1,21 @@
 # ArtSystem
 # Merry Christmas
-A small gaming console for python!
+A Fast Growing Gaming Console for Python!!!!!
 
 ![Version](https://img.shields.io/badge/Version-v1.8-blue.svg?style=social)
 
 # Introduction
 
 Welcome to the ArtSystem Github!
-ArtSystem is a small gaming console that is made in python
+ArtSystem is a small gaming console that is made in python!
+ArtSystem has 500+ lines on code!!!!!!!
+And lots of interesting features and Games!
+The ArtGames team is constantly updating ArtSystem to you guys enjoy more games
+and features!
+
+Have Fun
+
+- The ArtGames Team
 
 # Features
 
