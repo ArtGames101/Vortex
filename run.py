@@ -9,8 +9,6 @@ try:
     from user import loginpass as loginp
 except:
     pass
-loginw = open("user/logindata.py", "w")
-loginpw = open("user/loginpass.py", "w")
 error = open("log/lasterror.txt", "w")
 start = open("log/startlog.txt", "w")
 gold = open("data/gold.py", "w")
@@ -86,24 +84,36 @@ def welcome():
           "=================\n")
     print("\n"
           "1. Login    | 2. Register\n"
-          "       3. Refer          \n")
+          "3. Guest    | 4. Refer   \n")
     choice = user_choice()
     if choice == "1":
         login()
     if choice == "2":
         register()
     if choice == "3":
+        guest()
+    if choice == "4":
         clear_screen()
         print("Help the community by refering ArtSystem to someone!")
         print("\n\nURL : https://github.com/ArtGames101/ArtSystem")
         input("\nBack")
         welcome()
 
+def guest():
+    clear_screen()
+    loginw.write("USERNAME = 'Guest'")
+    loginpw.write("PASS = 'guestie'")
+    loginw.close()
+    loginpw.close()
+    input("You Are logging in as a guest get ready for restart!")
+    subprocess.call((sys.executable, "run.py"))
+    
 def login():
     clear_screen()
     print("=========\n"
           "  Login  \n"
           "=========\n")
+    print("Guest Passwords are: guestie")
     try:
         print("{}\n".format(logind.USERNAME))
     except:
@@ -122,6 +132,7 @@ def register():
     print("==========\n"
           " Register \n"
           "==========\n")
+    loginw = open("user/logindata.py", "w")
     print("First Choose a Username!")
     choice = user_choice()
     loginw.write("USERNAME = '{}'".format(choice))
@@ -133,6 +144,7 @@ def registerp():
     print("==========\n"
           " Register \n"
           "==========\n")
+    loginpw = open("user/loginpass.py", "w")
     print("Now Choose a password")
     choice = user_choice()
     loginpw.write("PASS = '{}'".format(choice))
@@ -171,6 +183,7 @@ def main():
         print("\a")
     print("g. Installed")
     print("s. Store")
+    print("set. Settings")
     if santa == True:
         print("sa. Santa's Gift!")
     else:
@@ -191,6 +204,8 @@ def main():
         installed()
     if choice == "s":
         store()
+    if choice == "set":
+        settings()
     if choice == "sa":
         if santa == True:
             santagift()
@@ -202,6 +217,57 @@ def main():
         shutdown()
     else:
         main()
+
+def settings():
+    clear_screen()
+    print("============\n"
+          "  Settings  \n"
+          "    BETA    \n"
+          "============\n")
+    print("Change Settings here!")
+    print("\a")
+    print("u. Username")
+    print("pass. Password")
+    print("Parental Control (COMING SOON!)")
+    print("\n"
+          "r. Restart (Saves Settings)")
+    print("0. Back")
+    choice = user_choice()
+    if choice == "u":
+        usernamec()
+    if choice == "pass":
+        passchange()
+    if choice == "r":
+        subprocess.call((sys.executable, "run.py"))
+    if choice == "0":
+        main()
+
+def usernamec():
+    clear_screen()
+    print("============\n"
+          "  Username  \n"
+          "============\n")
+    loginw = open("user/logindata.py", "w")
+    print("\n"
+          "New Username :")
+    choice = user_choice()
+    loginw.write("USERNAME = '{}'".format(choice))
+    input("Done!")
+    settings()
+
+def passchange():
+    clear_screen()
+    print("============\n"
+          "  Password  \n"
+          "============\n")
+    print("\n"
+          "New Password :")
+    loginpw = open("user/loginpass.py", "w")
+    choice = user_choice()
+    loginpw.write("USERNAME = '{}'".format(choice))
+    input("Done!")
+    settings()
+
 
 def santagift():
     clear_screen()
@@ -265,6 +331,8 @@ def shutdown():
               "\n"
               "        ArtSystem        \n")
         sys.exit(1)
+    if choice == "3":
+        wait()
     if choice == "0":
         main()
 
