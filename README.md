@@ -2,7 +2,7 @@
 # Merry Christmas
 A small gaming console for python!
 
-![Version](https://img.shields.io/badge/Version-v1.8%20ALPHA-blue.svg?style=social)
+![Version](https://img.shields.io/badge/Version-v1.8-blue.svg?style=social)
 
 # Introduction
 
