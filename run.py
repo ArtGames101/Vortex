@@ -7,16 +7,20 @@ from data import gold as g
 try:
     from user import logindata as logind
     from user import loginpass as loginp
+    from user import parental as parent
 except:
     pass
+
 error = open("log/lasterror.txt", "w")
 start = open("log/startlog.txt", "w")
 gold = open("data/gold.py", "w")
 santa = True
 games = ["snake", "BattleSim", "squirrel", "Santa", "Tetris"]
-gm = 3
+apps = ["DocCreator"]
+gm = 5
+ap = 1
 pa = 1
-ad = ["Go Gold and get ALPHA games that are comming soon!", "Squirrel (GO GOLD!) (Eat other squirrels to become the OMEGA SQUIRREL)", "Snake (a game where you have to eat apples!)", "BattleSim (The best battle simulator for python!)", "Merry Christmas!"]
+ad = ["Go Gold and get ALPHA games that are comming soon!", "Squirrel (GO GOLD!) (Eat other squirrels to become the OMEGA SQUIRREL)", "Snake (a game where you have to eat apples!)", "BattleSim (The best battle simulator for python!)", "Tetris  (A Game where you have to stack blocks!)", "Merry Christmas!"]
 try:
     import snake
 except Exception as e:
@@ -107,6 +111,8 @@ def welcome():
 
 def guest():
     clear_screen()
+    loginw = open("user/logindata.py", "w")
+    loginpw = open("user/loginpass.py", "w")
     loginw.write("USERNAME = 'Guest'")
     loginpw.write("PASS = 'guestie'")
     loginw.close()
@@ -119,9 +125,12 @@ def login():
     print("=========\n"
           "  Login  \n"
           "=========\n")
-    if logind.USERNAME == 'Guest':
-        print("Guest Passwords are: guestie")
-    else:
+    try:
+        if logind.USERNAME == 'Guest':
+            print("Guest Passwords are: guestie")
+        else:
+            pass
+    except:
         pass
     try:
         print("{}\n".format(logind.USERNAME))
@@ -131,7 +140,7 @@ def login():
           "Password: \n"
           "")
     choice = user_choice()
-    if choice == loginp.PASS:
+    if choice == loginp.PASSWORD:
         main()
     else:
         login()
@@ -156,7 +165,7 @@ def registerp():
     loginpw = open("user/loginpass.py", "w")
     print("Now Choose a password")
     choice = user_choice()
-    loginpw.write("PASS = '{}'".format(choice))
+    loginpw.write("PASSWORD = '{}'".format(choice))
     loginpw.close()
     clear_screen()
     print("Writing....")
@@ -200,7 +209,7 @@ def main():
     else:
         pass
     print("\n{}".format(random.choice(ad)))
-    print("\n0. Shutdown")
+    print("\n0. Logout")
     choice = user_choice()
     if choice == "(o)":
         if game == "snake":
@@ -214,11 +223,29 @@ def main():
         if game == "Santa":
             subprocess.call((sys.executable, "SantasLittleHelper/santa.py"))
     if choice == "s":
-        store()
+        if parent.PAPASS == None:
+            store()
+        else:
+            clear_screen()
+            print("Enter Parental Control Password")
+            choice = user_choice()
+            if choice == parent.PAPASS:
+                store()
+            else:
+                main()
     if choice == "c":
         changelog()
     if choice == "set":
-        settings()
+        if parent.PAPASS == None:
+            settings()
+        else:
+            clear_screen()
+            print("Enter Parental Control Password")
+            choice = user_choice()
+            if choice == parent.PAPASS:
+                settings()
+            else:
+                main()
     if choice == "sa":
         if santa == True:
             santagift()
@@ -227,7 +254,7 @@ def main():
     if choice == "=":
         menu()
     if choice == "0":
-        shutdown()
+        logout()
     else:
         main()
 
@@ -241,7 +268,7 @@ def settings():
     print("\a")
     print("u. Username")
     print("pass. Password")
-    print("Parental Control (COMING SOON!)")
+    print("p. Parental Control")
     print("\n"
           "r. Restart (Saves Settings)")
     print("0. Back")
@@ -250,11 +277,62 @@ def settings():
         usernamec()
     if choice == "pass":
         passchange()
+    if choice == "p":
+        if parent.PAPASS == None:
+            parentalcontrol()
+        else:
+            parentalsettings()
     if choice == "r":
         subprocess.call((sys.executable, "run.py"))
     if choice == "0":
         main()
 
+def parentalsettings():
+    clear_screen()
+    print("==================\n"
+          " Parental Control \n"
+          "==================\n")
+    print("Parental Control Settings:")
+    print("\n"
+          "p. Change Parental Password\n"
+          "c. Clear Parental Password")
+    choice = user_choice()
+    if choice == "p":
+        parentalcontrol()
+    if choice == "c":
+        par = open("user/parental.py", "w")
+        par.write("PAPASS = None")
+        clear_screen()
+        input("Restarting...")
+        par.close()
+        subprocess.call((sys.executable, "run.py"))
+def parentalcontrol():
+    clear_screen()
+    print("==================\n"
+          " Parental Control \n"
+          "==================\n")
+    print("Enter your Account Password!")
+    choice = user_choice()
+    if choice == loginp.PASSWORD:
+        input("Accepted!")
+        parentalac()
+    else:
+        input("Incorrect Password!")
+        settings()
+
+def parentalac():
+    clear_screen()
+    print("==================\n"
+          " Parental Control \n"
+          "==================\n")
+    print("Choose Your parental control password!")
+    choice = user_choice()
+    par = open("user/parental.py", "w")
+    par.write("PAPASS = '{}'".format(choice))
+    clear_screen()
+    input("Restarting...")
+    par.close()
+    subprocess.call((sys.executable, "run.py"))
 def usernamec():
     clear_screen()
     print("============\n"
@@ -310,6 +388,8 @@ def menu():
           "========\n")
     print("Games in Store:\n"
           "{}".format(gm))
+    print("Apps in Store:\n"
+          "{}".format(ap))
     print("Passes in Store:\n"
           "{}".format(pa))
     print("Size of ArtSystem:\n"
@@ -317,14 +397,15 @@ def menu():
     input("\nBack")
     main()
 
-def shutdown():
+def logout():
     clear_screen()
     print("==========\n"
-          " Shutdown \n"
+          "  Logout  \n"
           "==========\n")
     print("1. Restart")
     print("2. Shutdown")
     print("3. Wait")
+    print("4. Logout")
     print("0. Back")
     choice = user_choice()
     if choice == "1":
@@ -346,6 +427,8 @@ def shutdown():
         sys.exit(1)
     if choice == "3":
         wait()
+    if choice == "4":
+        welcome()
     if choice == "0":
         main()
 
@@ -388,9 +471,9 @@ def changelog():
           "=================\n")
     print("Whats New?")
     print("\n"
-          "* Added Changelog\n"
-          "* Removed Installed Page (Wasn't Functional!)\n"
-          "* Added Tetris Game to Store")
+          "* Added Parental Controls!\n"
+          "* Added Apps Page\n"
+          "")
     print("\n"
           "<. Last Update   | 0. Back")
     choice = user_choice()
@@ -406,7 +489,9 @@ def lastupdate():
           "=================\n")
     print("Whats New?")
     print("\n"
-          "Cant Read!!!")
+          "* Added Changelog\n"
+          "* Removed Installed Page (Wasn't Functional!)\n"
+          "* Added Tetris Game to Store")
     input("\nBack")
     changelog()
     
@@ -416,12 +501,15 @@ def store():
           " ArtSystem Store \n"
           "=================\n")
     print("1. Games")
-    print("2. Passes")
+    print("2. Apps")
+    print("3. Passes")
     print("0. Back")
     choice = user_choice()
     if choice == "1":
         storegames()
     if choice == "2":
+        apps()
+    if choice == "3":
         passes()
     if choice == "0":
         main()
@@ -432,11 +520,48 @@ def passes():
           "     Passes      \n"
           "=================\n")
     print("1. Gold")
+    print("0. Back")
     choice = user_choice()
     if choice == "1":
         gogold()
+    if choice == "0":
+        store()
 
+def apps():
+    clear_screen()
+    print("=================\n"
+          "      Apps       \n"
+          "=================\n")
+    print("1. Document Creator (ArtGames101)")
+    print("0. Back")
+    choice = user_choice()
+    if choice == "1":
+        storedoc()
+    if choice == "0":
+        store()
 
+def storedoc():
+    clear_screen()
+    print("Document Creator\n"
+          "\n"
+          "Description:\n"
+          "Create Documents!\n"
+          "\n"
+          "Publisher:\n"
+          "ArtGames101\n")
+    try:
+        import DocCreator
+        print("\nInstalled!")
+    except:
+        print("i. Install")
+    print("0. Back")
+    choice = user_choice()
+    if choice == "i":
+        subprocess.call(("git", "clone", "https://github.com/artsystem101/DocCreator.git"))
+        input("Installed!")
+        storerdoc()
+    if choice == "0":
+        apps()
 def storegames():
     clear_screen()
     print("=================\n"
@@ -545,6 +670,7 @@ def storesquirrel():
             storesquirrel()
     if choice == "0":
         storegames()
+
 def storesnake():
     clear_screen()
     print("Snake\n"
