@@ -1,6 +1,22 @@
 # ArtSystem
-# Merry Christmas
-A Fast Growing Gaming Console for Python!!!!!
+
+# HUGE Update Comming Soon! (Full Release)
+
+Changelog so far:
+
+* Added Notifications Page
+* Changed Loading Screen
+* Added Advanced Settings to Settings Page
+* Added Danger Zone Section for settings (Delete Account, Overwrite ArtSystem)
+* Added Download log
+* Fixed Major Bugs\n"
+* Fixed Crashes (can now withstand 7 large errors)
+* Added Startup error Message
+* Fixed Random Page teleport
+* Added Alphapps Pass
+* Updated Store Scripts/App Creators
+* Fixed Guest Glitch (Passwords wouldn't work!)
+* Added SafeZone  (ALPHA) (For kids!)
 
 ![Version](https://img.shields.io/badge/Version-v1.9-blue.svg?style=social)
 
