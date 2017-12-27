@@ -9,7 +9,7 @@ Changelog so far:
 * Added Advanced Settings to Settings Page
 * Added Danger Zone Section for settings (Delete Account, Overwrite ArtSystem)
 * Added Download log
-* Fixed Major Bugs\n"
+* Fixed Major Bugs
 * Fixed Crashes (can now withstand 7 large errors)
 * Added Startup error Message
 * Fixed Random Page teleport
