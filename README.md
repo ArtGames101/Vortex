@@ -18,7 +18,7 @@ Changelog so far:
 * Fixed Guest Glitch (Passwords wouldn't work!)
 * Added SafeZone  (ALPHA) (For kids!)
 
-![Version](https://img.shields.io/badge/Version-v1.9-blue.svg?style=social)
+![Version](https://img.shields.io/badge/Version-v10.2-blue.svg?style=social)
 
 # Introduction
 
