@@ -1,1 +1,1 @@
-gold = False
+g = False

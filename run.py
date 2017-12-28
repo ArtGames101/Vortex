@@ -4,6 +4,9 @@
 import sys, os, random, time, subprocess, psutil
 import config as c
 from data import gold as g
+from data import alphapps as alpha
+from log import notification
+from user import safezone
 try:
     from user import logindata as logind
     from user import loginpass as loginp
@@ -13,14 +16,13 @@ except:
 
 error = open("log/lasterror.txt", "w")
 start = open("log/startlog.txt", "w")
-gold = open("data/gold.py", "w")
-santa = True
+santa = False
 games = ["snake", "BattleSim", "squirrel", "Santa", "Tetris"]
 apps = ["DocCreator"]
 gm = 5
 ap = 1
 pa = 1
-ad = ["Go Gold and get ALPHA games that are comming soon!", "Squirrel (GO GOLD!) (Eat other squirrels to become the OMEGA SQUIRREL)", "Snake (a game where you have to eat apples!)", "BattleSim (The best battle simulator for python!)", "Tetris  (A Game where you have to stack blocks!)", "Merry Christmas!"]
+ad = ["Go Gold and get ALPHA games that are comming soon!", "Get Alphapps to install the newest apps!", "Squirrel (GO GOLD!) (Eat other squirrels to become the OMEGA SQUIRREL)", "Snake (a game where you have to eat apples!)", "BattleSim (The best battle simulator for python!)", "Tetris  (A Game where you have to stack blocks!)"]
 try:
     import snake
 except Exception as e:
@@ -69,24 +71,50 @@ def user_choice():
     return input("\n>>> ").lower().strip()
 
 def loading():
-    print("Getting Ready...")
-    time.sleep(5)
     clear_screen()
-    print("\n"
-          "     /------------\      \n"
-          "    /              \     \n"
-          "   /                \    \n"
-          "  |                  |   \n"
-          "  |                  |   \n"
-          "  |__________________|   \n"
-          "  |                  |   \n"
-          "  |                  |   \n"
-          "  |                  |   \n"
-          "\n"
-          "        ArtSystem        \n")
-    time.sleep(5)
+    print("Starting ArtSystem... |")
+    time.sleep(1)
+    clear_screen()
+    print("Starting ArtSystem... /")
+    time.sleep(1)
+    clear_screen()
+    print("Starting ArtSystem... -")
+    time.sleep(1)
+    clear_screen()
+    print("Starting ArtSystem... |")
+    time.sleep(1)
+    clear_screen()
+    print("Starting ArtSystem... -")
+    time.sleep(1)
+    clear_screen()
+    print("Starting ArtSystem... \ ")
+    time.sleep(1)
+    clear_screen()
+    print("Starting ArtSystem... |")
+    time.sleep(1)
+    clear_screen()
+    print("Starting ArtSystem... |")
+    time.sleep(1)
+    clear_screen()
+    print("Starting ArtSystem... /")
+    time.sleep(1)
+    clear_screen()
+    print("Starting ArtSystem... -")
+    time.sleep(1)
+    clear_screen()
+    print("Starting ArtSystem... |")
+    time.sleep(1)
+    clear_screen()
+    print("Starting ArtSystem... -")
+    time.sleep(1)
+    clear_screen()
+    print("Starting ArtSystem... \ ")
+    time.sleep(1)
+    clear_screen()
+    print("Starting ArtSystem... |")
+    time.sleep(1)
     welcome()
-
+    
 def welcome():
     clear_screen()
     print("=================\n"
@@ -114,7 +142,7 @@ def guest():
     loginw = open("user/logindata.py", "w")
     loginpw = open("user/loginpass.py", "w")
     loginw.write("USERNAME = 'Guest'")
-    loginpw.write("PASS = 'guestie'")
+    loginpw.write("PASSWORD = 'guestie'")
     loginw.close()
     loginpw.close()
     input("You Are logging in as a guest get ready for restart!")
@@ -141,6 +169,10 @@ def login():
           "")
     choice = user_choice()
     if choice == loginp.PASSWORD:
+        gold = open("data/gold.py", "w")
+        alphapps = open("data/alphapps.py", "w")
+        alphapps.write("A = False")
+        gold.write("g = False")
         main()
     else:
         login()
@@ -208,6 +240,7 @@ def main():
         print("sa. Santa's Gift!")
     else:
         pass
+    print("n. Notifications")
     print("\n{}".format(random.choice(ad)))
     print("\n0. Logout")
     choice = user_choice()
@@ -251,6 +284,8 @@ def main():
             santagift()
         else:
             main()
+    if choice == "n":
+        notification()
     if choice == "=":
         menu()
     if choice == "0":
@@ -258,11 +293,29 @@ def main():
     else:
         main()
 
+def notification():
+    clear_screen()
+    print("=====================\n"
+          " Newest Notification \n"
+          "=====================\n")
+    try:
+        print(notification.NOT)
+    except:
+        print("No New Notifications")
+    print("\n"
+          "1. Clear  | 0. Back")
+    choice = user_choice()
+    if choice == "1":
+        rewrite = open("log/notification.py", "w")
+        rewrite.write("NOT = 'None'")
+    if choice == "0":
+        main()
+    else:
+        notification()
 def settings():
     clear_screen()
     print("============\n"
           "  Settings  \n"
-          "    BETA    \n"
           "============\n")
     print("Change Settings here!")
     print("\a")
@@ -270,6 +323,7 @@ def settings():
     print("pass. Password")
     print("p. Parental Control")
     print("\n"
+          "a. Advanced Settings\n"
           "r. Restart (Saves Settings)")
     print("0. Back")
     choice = user_choice()
@@ -282,11 +336,135 @@ def settings():
             parentalcontrol()
         else:
             parentalsettings()
+    if choice == "a":
+        advancedsettings()
     if choice == "r":
         subprocess.call((sys.executable, "run.py"))
     if choice == "0":
         main()
+    else:
+        settings()
 
+def advancedsettings():
+    clear_screen()
+    print("============\n"
+          "  Advanced  \n"
+          "  Settings  \n"
+          "============\n")
+    print("n. Change Recent Notification")
+    print("\n"
+          "Danger Zone!!!:\n"
+          "\n")
+    print("s. Safe Zone  (Completely Bug Free Version of ArtSystem easy for little kids)")
+    print("d. ****Delete Accoount****  (Deletes Current Account!)")
+    print("o. ****Overwrite ArtSystem**** (Fully Destroys the main System!)")
+    print("\n"
+          "r. Restart (Saves Settings)\n"
+          "0. Back")
+    choice = user_choice()
+    if choice == "n":
+        notifichange()
+    if choice == "s":
+        setupsafezone()
+    if choice == "d":
+        deleteacc()
+    if choice == "o":
+        override()
+    if choice == "r": 
+        subprocess.call((sys.executable, "run.py"))
+    if choice == "0":
+        settings()
+    else:
+        advancedsettings()
+
+def setupsafezone():
+    clear_screen()
+    print("===========\n"
+          " Safe Zone \n"
+          "   Setup   \n"
+          "===========\n")
+    print("Information:\n"
+          "\n"
+          "SafeZone is mostly for children it will soon be\n"
+          "loaded with lots of educational apps\n"
+          "SafeZone can be undone if wanted to!\n"
+          "When you run the default launcher it will send you to SafeZone\n"
+          "So you dont have to do this again!")
+    print("\n"
+          "Features:\n"
+          "\n"
+          "* Take Care of a pet\n"
+          "* Educational Games\n"
+          "And MORE!")
+    print("\n"
+          "Would you like to continue?")
+    print("\n"
+          "y. Yes  | n. No")
+    choice = user_choice()
+    if choice == "y":
+        csafezone()
+    if choice == "n":
+        advancedsettings()
+
+def csafezone():
+    num = ["255", "123", "000", "432", "900", "124"]
+    clear_screen()
+    print("===========\n"
+          " Safe Zone \n"
+          "   Setup   \n"
+          "===========\n")
+    print("Choose Your SafeZone Username")
+    choice = user_choice()
+    safe = open("user/safezone.py", "w")
+    safe.write("NAME = '{}{}'".format(choice, random.choice(num)))
+    new = open("safedata/new.py", "w")
+    new.write("isn = True")
+    input("Push Enter to continue to SafeZone!")
+    safe.close()
+    new.close()
+    subprocess.call((sys.executable, "run.py"))
+
+def deleteacc():
+    clear_screen()
+    print("=================\n"
+          " Delete Account? \n"
+          "=================\n")
+    print("Are You Sure you want to delete your account?")
+    print("\n"
+          "y. Yes  | n. No")
+    choice = user_choice()
+    if choice == "y":
+        loginw = open("user/logindata.py", "w")
+        loginpw = open("user/loginpass.py", "w")
+        loginw.write("USERNAME = ")
+        loginpw.write("PASSWORD = ")
+        input("Enter to continue")
+        loginw.close()
+        loginpw.close()
+        subprocess.call((sys.executable, "run.py"))
+def override():
+    if parent.PAPASS == None:
+        clear_screen()
+        print("====================\n"
+              " **** Overwrite **** \n"
+              "====================\n")
+        print("\n"
+              "Are you sure you want to Override ArtSystem this can not be undone?")
+        print("\n"
+              "y. Yes   | n. No")
+        choice = user_choice()
+        if choice == "y":
+            over = open("run.py", "w")
+            over.write("# You Have overwrited ArtSystem\n"
+                       "print('Opps! This wont work!')")
+            over.close()
+            subprocess.call((sys.executable, "run.py"))
+        if choice == "n":
+            main()
+        else:
+            override()
+    else:
+        main()
 def parentalsettings():
     clear_screen()
     print("==================\n"
@@ -299,6 +477,7 @@ def parentalsettings():
     choice = user_choice()
     if choice == "p":
         parentalcontrol()
+
     if choice == "c":
         par = open("user/parental.py", "w")
         par.write("PAPASS = None")
@@ -327,12 +506,16 @@ def parentalac():
           "==================\n")
     print("Choose Your parental control password!")
     choice = user_choice()
-    par = open("user/parental.py", "w")
-    par.write("PAPASS = '{}'".format(choice))
-    clear_screen()
-    input("Restarting...")
-    par.close()
-    subprocess.call((sys.executable, "run.py"))
+    if choice == loginp.PASSWORD:
+        input("You can not use your account password!")
+        settings()
+    else:
+        par = open("user/parental.py", "w")
+        par.write("PAPASS = '{}'".format(choice))
+        clear_screen()
+        input("Restarting...")
+        par.close()
+        subprocess.call((sys.executable, "run.py"))
 def usernamec():
     clear_screen()
     print("============\n"
@@ -375,6 +558,9 @@ def santagift():
         gold.write("gold = True")
         input("All ArtSystem Games have been installed and also you have recieved Gold!")
         input("Unpack snake and squirrel from their folders!")
+        notifi = open("log/notification.py", "w")
+        notifi.write("import time\n"
+                     "NOT = '{} |  {}'.format(time.ctime(), 'Collected Santa's Gift!')")
         main()
     else:
         main()
@@ -431,6 +617,8 @@ def logout():
         welcome()
     if choice == "0":
         main()
+    else:
+        logout()
 
 def wait():
     clear_screen()
@@ -443,6 +631,8 @@ def wait():
     print("40. 40 Secs")
     print("50. 50 Secs")
     print("60. 1 Min")
+    print("70. 1 Min 10 Secs")
+    print("80. 1 Min 20 Secs")
     choice = user_choice()
     if choice == "10":
         time.sleep(10)
@@ -462,6 +652,12 @@ def wait():
     if choice == "60":
         time.sleep(60)
         main()
+    if choice == "70":
+        time.sleep(70)
+        main()
+    if choice == "80":
+        time.sleep(80)
+        main()
 
 
 def changelog():
@@ -471,9 +667,19 @@ def changelog():
           "=================\n")
     print("Whats New?")
     print("\n"
-          "* Added Parental Controls!\n"
-          "* Added Apps Page\n"
-          "")
+          "* Added Notifications Page\n"
+          "* Changed Loading Screen\n"
+          "* Added Advanced Settings to Settings Page\n"
+          "* Added Danger Zone Section for settings (Delete Account, Overwrite ArtSystem)\n"
+          "* Added Download log\n"
+          "* Fixed Major Bugs\n"
+          "* Fixed Crashes (can now withstand 7 large errors)\n"
+          "* Added Startup error Message\n"
+          "* Fixed Random Page teleport\n"
+          "* Added Alphapps Pass\n"
+          "* Updated Store Scripts/App Creators\n"
+          "* Fixed Guest Glitch (Passwords wouldn't work!)\n"
+          "* Added SafeZone  (ALPHA) (For kids!)\n")
     print("\n"
           "<. Last Update   | 0. Back")
     choice = user_choice()
@@ -489,9 +695,9 @@ def lastupdate():
           "=================\n")
     print("Whats New?")
     print("\n"
-          "* Added Changelog\n"
-          "* Removed Installed Page (Wasn't Functional!)\n"
-          "* Added Tetris Game to Store")
+          "* Added Parental Controls!\n"
+          "* Added Apps Page\n"
+          "")
     input("\nBack")
     changelog()
     
@@ -519,11 +725,14 @@ def passes():
     print("=================\n"
           "     Passes      \n"
           "=================\n")
-    print("1. Gold")
+    print("1. Gold  (ArtSystem)")
+    print("2. Alphapps  (ArtSystem)")
     print("0. Back")
     choice = user_choice()
     if choice == "1":
         gogold()
+    if choice == "2":
+        goalphapps
     if choice == "0":
         store()
 
@@ -549,17 +758,26 @@ def storedoc():
           "\n"
           "Publisher:\n"
           "ArtGames101\n")
-    try:
-        import DocCreator
-        print("\nInstalled!")
-    except:
-        print("i. Install")
-    print("0. Back")
+    if alpha.A == True:
+        try:
+            import DocCreator
+            print("Installed!")
+        except:
+            print("i. Install  (With Alphapps Pass!)")
+    else:
+        print("Get Alphapps to install!")
     choice = user_choice()
     if choice == "i":
-        subprocess.call(("git", "clone", "https://github.com/artsystem101/DocCreator.git"))
-        input("Installed!")
-        storerdoc()
+        if alpha.A == True:
+            subprocess.call(("git", "clone", "https://github.com/artsystem101/DocCreator.git"))
+            input("Installed!")
+            notifi = open("log/notification.py", "w")
+            notifi.write("import time\n"
+                         "NOT = '{} |  {}'.format(time.ctime(), 'Installed App (Document Creator)')")
+            storedoc()
+        else:
+            input("Install Alphapps Pass to Get this!")
+            storedoc()
     if choice == "0":
         apps()
 def storegames():
@@ -607,6 +825,9 @@ def storetetris():
         subprocess.call(("git", "clone", "https://github.com/artsystem101/tetris.git"))
         input("Installed!")
         input("To Unpack tetris game move tetris.py & the mid files from the tetris folder!")
+        notifi = open("log/notification.py", "w")
+        notifi.write("import time\n"
+                     "NOT = '{} |  {}'.format(time.ctime(), 'Installed Game (Tetris)')")
         storetetris()
     if choice == "0":
         storegames()
@@ -635,6 +856,9 @@ def slh():
             subprocess.call(("git", "clone", "https://github.com/artsystem101/SantasLittleHelper.git"))
             input("Installed!")
             input("Merry Christmas (Your game does not need unpacking!)")
+            notifi = open("log/notification.py", "w")
+            notifi.write("import time\n"
+                         "NOT = '{} |  {}'.format(time.ctime(), 'Installed Exclusive Game (Santas little helper!)')")
             slh()
         else:
             slh()
@@ -665,6 +889,9 @@ def storesquirrel():
             subprocess.call(("git", "clone", "https://github.com/artsystem101/squirrel.git"))
             input("Installed!")
             input("To Unpack squirrel game move squirrel.py and squirrel.png from the squirrel folder!")
+            notifi = open("log/notification.py", "w")
+            notifi.write("import time\n"
+                         "NOT = '{} |  {}'.format(time.ctime(), 'Installed Gold Game (Squirrel)')")
             storesquirrel()
         else:
             storesquirrel()
@@ -691,6 +918,9 @@ def storesnake():
         subprocess.call(("git", "clone", "https://github.com/artsystem101/snake.git"))
         input("Installed!")
         input("To Unpack snake game move snake.py from the snake folder!")
+        notifi = open("log/notification.py", "w")
+        notifi.write("import time\n"
+                     "NOT = '{} |  {}'.format(time.ctime(), 'Installed Game (Snake)')")
         storesnake()
     if choice == "0":
         storegames()
@@ -715,6 +945,9 @@ def storebattlesim():
         subprocess.call(("git", "clone", "https://github.com/ArtGames101/BattleSim.git"))
         input("Installed!")
         input("Your Game Doesnt Need unpacking!")
+        notifi = open("log/notification.py", "w")
+        notifi.write("import time\n"
+                     "NOT = '{} |  {}'.format(time.ctime(), 'Installed Game (Battle Sim)')")
         storebattlesim()
     if choice == "0":
         storegames()
@@ -728,7 +961,7 @@ def gogold():
           "Get Special Access to store games that have not been released!\n"
           "\n"
           "Publisher:\n"
-          "ArtGames101\n")
+          "ArtSystem\n")
     if g.gold == True:
         print("\nActive!")
     else:
@@ -742,4 +975,30 @@ def gogold():
     if choice == "0":
         passes()
 
-loading()
+def goalphapps():
+    clear_screen()
+    print("*Alphapps*\n"
+          "\n"
+          "Description:\n"
+          "Get Special Access to Apps!!!!\n"
+          "\n"
+          "Publisher:\n"
+          "ArtSystem\n")
+    if alpha.A == True:
+        print("\nActive!")
+    else:
+        print("\ni. Get Alphapps")
+    print("0. Back")
+    choice = user_choice()
+    if choice == "i":
+        gold.write("A = True")
+        input("Alphapps Pass Updated!")
+        goalphapps
+    if choice == "0":
+        passes()
+
+
+if safezone.NAME == None:
+    loading()
+else:
+    subprocess.call((sys.executable, "safe.py"))  
