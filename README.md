@@ -26,7 +26,7 @@ Welcome to the ArtSystem Github!
 
 ArtSystem is a small gaming console that is made in python!
 
-ArtSystem has 500+ lines on code!!!!!!!
+ArtSystem has 1000+ lines on code!!!!!!!
 
 And lots of interesting features and Games!
 
