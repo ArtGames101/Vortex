@@ -14,6 +14,8 @@ try:
 except:
     pass
 
+version = "v10.3-Stable"
+nextup = "v10.4-Stable"
 error = open("log/lasterror.txt", "w")
 start = open("log/startlog.txt", "w")
 santa = False
@@ -153,6 +155,10 @@ def login():
     print("=========\n"
           "  Login  \n"
           "=========\n")
+    if logind.USERNAME == None:
+        register()
+    else:
+        pass
     try:
         if logind.USERNAME == 'Guest':
             print("Guest Passwords are: guestie")
@@ -352,6 +358,7 @@ def advancedsettings():
           "  Settings  \n"
           "============\n")
     print("n. Change Recent Notification")
+    print("u. Upgrade to {}".format(nextup))
     print("\n"
           "Danger Zone!!!:\n"
           "\n")
@@ -364,6 +371,8 @@ def advancedsettings():
     choice = user_choice()
     if choice == "n":
         notifichange()
+    if choice == "u":
+        subprocess.call((sys.executable, "upgrade.py"))
     if choice == "s":
         setupsafezone()
     if choice == "d":
@@ -572,6 +581,8 @@ def menu():
     print("========\n"
           " Status \n"
           "========\n")
+    print("Current Version:\n"
+          "{}".format(version))
     print("Games in Store:\n"
           "{}".format(gm))
     print("Apps in Store:\n"
@@ -667,19 +678,9 @@ def changelog():
           "=================\n")
     print("Whats New?")
     print("\n"
-          "* Added Notifications Page\n"
-          "* Changed Loading Screen\n"
-          "* Added Advanced Settings to Settings Page\n"
-          "* Added Danger Zone Section for settings (Delete Account, Overwrite ArtSystem)\n"
-          "* Added Download log\n"
-          "* Fixed Major Bugs\n"
-          "* Fixed Crashes (can now withstand 7 large errors)\n"
-          "* Added Startup error Message\n"
-          "* Fixed Random Page teleport\n"
-          "* Added Alphapps Pass\n"
-          "* Updated Store Scripts/App Creators\n"
-          "* Fixed Guest Glitch (Passwords wouldn't work!)\n"
-          "* Added SafeZone  (ALPHA) (For kids!)\n")
+          "* Added Upgrade ArtSystem in advanced settings\n"
+          "* Fixed Last Update in Changelog\n"
+          "* Fixed Major Bugs")
     print("\n"
           "<. Last Update   | 0. Back")
     choice = user_choice()
@@ -693,11 +694,21 @@ def lastupdate():
     print("=================\n"
           "    Changelog    \n"
           "=================\n")
-    print("Whats New?")
+    print("Whats Was in the last update?!?!")
     print("\n"
-          "* Added Parental Controls!\n"
-          "* Added Apps Page\n"
-          "")
+          "* Added Notifications Page\n"
+          "* Changed Loading Screen\n"
+          "* Added Advanced Settings to Settings Page\n"
+          "* Added Danger Zone Section for settings (Delete Account, Overwrite ArtSystem)\n"
+          "* Added Download log\n"
+          "* Fixed Major Bugs\n"
+          "* Fixed Crashes (can now withstand 7 large errors)\n"
+          "* Added Startup error Message\n"
+          "* Fixed Random Page teleport\n"
+          "* Added Alphapps Pass\n"
+          "* Updated Store Scripts/App Creators\n"
+          "* Fixed Guest Glitch (Passwords wouldn't work!)\n"
+          "* Added SafeZone  (ALPHA) (For kids!)\n")
     input("\nBack")
     changelog()
     
