@@ -23,7 +23,7 @@ def user_choice():
 
 def warning():
     clear_screen()
-    print("Would you like to upgrade to ArtSystem v10.4-Stable?\n"
+    print("Would you like to upgrade to ArtSystem v10.5-Stable?\n"
           "\n"
           "WARNING! : If the newest version has not been released\n"
           "           The Current version will be installed\n"

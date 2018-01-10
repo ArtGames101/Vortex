@@ -23,7 +23,6 @@ def loading():
     clear_screen()
     print("Starting SafeZone... /")
     time.sleep(1)
-
     clear_screen()
     print("Starting SafeZone... -")
     time.sleep(1)
