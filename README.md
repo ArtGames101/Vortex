@@ -1,6 +1,6 @@
 # ArtSystem
 
-![Version](https://img.shields.io/badge/Version-v10.4-blue.svg?style=social)
+![Version](https://img.shields.io/badge/Version-v10.5-blue.svg?style=social)
 
 # Introduction
 
@@ -32,7 +32,7 @@ What things does ArtSystem have?
 * Password Security
 * Changelog
 * Safezone
-* Inside Upgrade
+* FAST Upgrading
 * Lag Free System
 
 And More!
