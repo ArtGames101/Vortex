@@ -1,6 +1,6 @@
 # ArtSystem
 
-![Version](https://img.shields.io/badge/Version-v10.5-blue.svg?style=social)
+![Version](https://img.shields.io/badge/Version-v10.5-blue.svg?style=social)   ![Size](https://img.shields.io/badge/ArtSystem%20Size-768.0%20KB-green.svg)
 
 # Introduction
 
