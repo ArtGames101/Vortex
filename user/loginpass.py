@@ -1,1 +1,1 @@
-PASSWORD = 'guestie'
+PASSWORD = None

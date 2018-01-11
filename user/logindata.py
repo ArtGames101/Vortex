@@ -1,1 +1,1 @@
-USERNAME = 'Guest'
+USERNAME = None

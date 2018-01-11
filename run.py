@@ -17,9 +17,9 @@ except:
     pass
 
 # Version
-version = "v10.4-Stable"
+version = "v10.5-Stable"
 # Next Version
-nextup = "v10.5-Stable"
+nextup = "v10.6-Stable"
 
 error = open("log/lasterror.txt", "w")
 start = open("log/startlog.txt", "w")
@@ -544,6 +544,7 @@ def notification():
 def settings():
     if logind.USERNAME == "Guest":
         input("Guests cant do that!")
+        main()
     else:
         clear_screen()
         print("============\n"
@@ -905,14 +906,9 @@ def changelog():
           "=================\n")
     print("Whats New in {}?".format(version))
     print("\n"
-          "* Changed Main screen\n"
-          "* Changed Loading Screen\n"
-          "* Changed Shutdown Screen\n"
-          "* Added Shutdown Option for\n"
-          "  Main Screen (Requested by MrBackPack)\n"
-          "* Added an Easter Egg (its not easter :D)\n"
-          "* Changed Guest Account  (Now can not download or change settings!)\n"
-          "* Changed Changelog Screen\n")
+          "* Added New Upgrade (Added Data Trancefer, confirm update)\n"
+          "* Fixed Guest accounts\n"
+          "* Fixed Minor Bugs")
     print("\n"
           "<. Last Update   | 0. Back")
     choice = user_choice()
@@ -928,15 +924,21 @@ def lastupdate():
           "=================\n")
     print("Whats Was in the last update?!?!")
     print("\n"
-          "* Added Upgrade ArtSystem in advanced settings\n"
-          "* Fixed Last Update in Changelog\n"
-          "* Fixed Major Bugs")
+          "* Changed Main screen\n"
+          "* Changed Loading Screen\n"
+          "* Changed Shutdown Screen\n"
+          "* Added Shutdown Option for\n"
+          "  Main Screen (Requested by MrBackPack)\n"
+          "* Added an Easter Egg (its not easter :D)\n"
+          "* Changed Guest Account  (Now can not download or change settings!)\n"
+          "* Changed Changelog Screen\n")
     input("\nBack")
     changelog()
     
 def store():
     if logind.USERNAME == "Guest":
-        input("Guests Cant use this!!!")
+        input("Guests Cant do that!")
+        main()
     else:
         clear_screen()
         print("=================\n"
