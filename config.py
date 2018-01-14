@@ -16,6 +16,9 @@ except:
 # squirrel
 # Santa  (Christmas Only!)
 # Tetris
+# VF
+# GunRush
+# DocCreator
 
-currentgame = "VF"
+currentgame = ""
 

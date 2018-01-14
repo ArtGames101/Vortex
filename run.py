@@ -501,9 +501,9 @@ def main():
     print("\n0. Logout")
     choice = user_choice()
     if choice == "(o)":
-        if app == "DocCreator":
+        if game == "DocCreator":
             subprocess.call((sys.executable, "DocCreator/run.py"))
-        if app == "VF":
+        if game == "VF":
             subprocess.call((sys.executable, "VirtualFriend-VF/run.py"))
         if game == "snake":
             subprocess.call(("python", "snake.py"))
