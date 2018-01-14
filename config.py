@@ -17,5 +17,5 @@ except:
 # Santa  (Christmas Only!)
 # Tetris
 
-currentgame = ""
+currentgame = "VF"
 

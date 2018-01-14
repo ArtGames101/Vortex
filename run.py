@@ -4,11 +4,13 @@
 # If you want to create your own version of this be my guest! there is sooooooo
 # much code like ALOT and its confusing!
 import sys, os, random, time, subprocess, psutil
+import urllib
 import config as c
 from data import gold as g
 from data import alphapps as alpha
 from log import notification
 from user import safezone
+from data import upgradestay as upg
 try:
     from user import logindata as logind
     from user import loginpass as loginp
@@ -17,18 +19,18 @@ except:
     pass
 
 # Version
-version = "v10.5-Stable"
+version = "v10.6-Stable"
 # Next Version
-nextup = "v10.6-Stable"
+nextup = "v10.7-Stable"
 
 error = open("log/lasterror.txt", "w")
 start = open("log/startlog.txt", "w")
 santa = False
-games = ["snake", "BattleSim", "squirrel", "Santa", "Tetris"]
-apps = ["DocCreator"]
+games = ["snake", "BattleSim", "squirrel", "Santa", "Tetris", "GunRush", "DocCreator", "VF"]
+apps = ["DocCreator", "VF"]
 gm = 5
-ap = 1
-pa = 1
+ap = 2
+pa = 2
 ad = ["Go Gold and get ALPHA games that are comming soon!", "Get Alphapps to install the newest apps!", "Squirrel (GO GOLD!) (Eat other squirrels to become the OMEGA SQUIRREL)", "Snake (a game where you have to eat apples!)", "BattleSim (The best battle simulator for python!)", "Tetris  (A Game where you have to stack blocks!)"]
 try:
     import snake
@@ -79,6 +81,20 @@ def user_choice():
 
 def loading():
     clear_screen()
+    if IS_WINDOWS:
+        try:
+            os.system("welcome.vbs")
+        except:
+            pass
+    else:
+        try:
+            subprocess.call(('notify-send', 'ArtSystem Startup', 'ArtSystem is starting up...'))
+        except:
+            try:
+                subprocess.call(('zenity', '--info', '--text="ArtSystem is starting up!"', '--timeout=5 2'))
+                clear_screen()
+            except:
+                pass
     print("\n"
       "     /------------\      \n"
       "    /              \     \n"
@@ -290,8 +306,17 @@ def loading():
     time.sleep(1)
     welcome()
     
+    
 def welcome():
     clear_screen()
+    try:
+        subprocess.call(('notify-send', 'ArtSystem Startup', 'ArtSystem has sucessfuly Loaded!'))
+    except:
+        try:
+            subprocess.call(('zenity', '--info', '--text="ArtSystem has sucessfuly Loaded!"', '--timeout=5 2'))
+            clear_screen()
+        except:
+            pass
     print("===================\n"
           "+   +ArtSystem+   +\n"
           "===================               {}".format(version))
@@ -446,18 +471,20 @@ def main():
         game = "Santa"
     elif c.currentgame == "squirrel":
         game = "squirrel"
+    elif c.currentgame == "GunRush":
+        game = "GunRush"
+    elif c.currentgame == "DocCreator":
+        game = "DocCreator"
+    elif c.currentgame == "VF":
+        game = "VF"
     else:
         game = "None"
     size = '{:.2f} MiB'.format(__import__('psutil').Process().memory_full_info().uss / 1024 ** 2)
-    start.write("Name : {}\n"
-                "\n"
-                "CGame : {}\n"
-                "\n"
-                "Size : {}".format(c.NAMETAG, game, size))
     clear_screen()
     print("========================================================\n"
           "=. {}        |  {}     \n"
           "========================================================\n".format(c.NAMETAG, time.ctime()))
+
     if game in games:
         print("(o). Disc Game ({})".format(game))
     else:
@@ -474,6 +501,10 @@ def main():
     print("\n0. Logout")
     choice = user_choice()
     if choice == "(o)":
+        if app == "DocCreator":
+            subprocess.call((sys.executable, "DocCreator/run.py"))
+        if app == "VF":
+            subprocess.call((sys.executable, "VirtualFriend-VF/run.py"))
         if game == "snake":
             subprocess.call(("python", "snake.py"))
         if game == "Tetris":
@@ -484,6 +515,8 @@ def main():
             subprocess.call((sys.executable, "BattleSim/run.py"))
         if game == "Santa":
             subprocess.call((sys.executable, "SantasLittleHelper/santa.py"))
+        if game == "GunRush":
+            subprocess.call((sys.executable, "GunRush/run.py"))
     if choice == "s":
         if parent.PAPASS == None:
             store()
@@ -589,7 +622,7 @@ def advancedsettings():
     print("\n"
           "Danger Zone!!!:\n"
           "\n")
-    print("s. Safe Zone  (Completely Bug Free Version of ArtSystem easy for little kids)")
+    print("s. Safe Zone Alpha  (Completely Bug Free Version of ArtSystem easy for little kids)")
     print("d. ****Delete Accoount****  (Deletes Current Account!)")
     print("o. ****Overwrite ArtSystem**** (Fully Destroys the main System!)")
     print("\n"
@@ -625,7 +658,9 @@ def setupsafezone():
           "loaded with lots of educational apps\n"
           "SafeZone can be undone if wanted to!\n"
           "When you run the default launcher it will send you to SafeZone\n"
-          "So you dont have to do this again!")
+          "So you dont have to do this again!\n"
+          "\n"
+          "WARNING : Safezone may be buggy when reverting back!")
     print("\n"
           "Features:\n"
           "\n"
@@ -906,9 +941,11 @@ def changelog():
           "=================\n")
     print("Whats New in {}?".format(version))
     print("\n"
-          "* Added New Upgrade (Added Data Trancefer, confirm update)\n"
-          "* Fixed Guest accounts\n"
-          "* Fixed Minor Bugs")
+          "* Added New Game by MrBackPack\n"
+          "* Changed Upgrade (Added Options, Now automaticly goes to new version)\n"
+          "* Added Featured Games in store\n"
+          "* Added Welcome messages (Ubuntu, Raspberry pi, Windows)\n"
+          "* Added VirtualFriend to Apps Page")
     print("\n"
           "<. Last Update   | 0. Back")
     choice = user_choice()
@@ -924,14 +961,9 @@ def lastupdate():
           "=================\n")
     print("Whats Was in the last update?!?!")
     print("\n"
-          "* Changed Main screen\n"
-          "* Changed Loading Screen\n"
-          "* Changed Shutdown Screen\n"
-          "* Added Shutdown Option for\n"
-          "  Main Screen (Requested by MrBackPack)\n"
-          "* Added an Easter Egg (its not easter :D)\n"
-          "* Changed Guest Account  (Now can not download or change settings!)\n"
-          "* Changed Changelog Screen\n")
+          "* Added New Upgrade (Added Data Trancefer, confirm update)\n"
+          "* Fixed Guest accounts\n"
+          "* Fixed Minor Bugs")
     input("\nBack")
     changelog()
     
@@ -944,19 +976,42 @@ def store():
         print("=================\n"
               " ArtSystem Store \n"
               "=================\n")
-        print("1. Games")
-        print("2. Apps")
-        print("3. Passes")
+        print("1. Featured")
+        print("2. Games")
+        print("3. Apps")
+        print("4. Passes")
         print("0. Back")
         choice = user_choice()
         if choice == "1":
-            storegames()
+            featured()
         if choice == "2":
-            apps()
+            storegames()
         if choice == "3":
+            apps()
+        if choice == "4":
             passes()
         if choice == "0":
             main()
+
+def featured():
+    clear_screen()
+    print("================\n"
+          "    Featured    \n"
+          "================\n")
+    print("The top 3 games and apps are here!\n\n")
+    print("1. BattleSim (ArtGames101)")
+    print("2. Snake (Pygame)")
+    print("3. GunRush (MrBackPack)")
+    print("0. Back")
+    choice = user_choice()
+    if choice == "1":
+        storebattlesim()
+    if choice == "2":
+        storesnake()
+    if choice == "3":
+        storegunrush()
+    if choice == "0":
+        store()
 
 def passes():
     clear_screen()
@@ -980,13 +1035,39 @@ def apps():
           "      Apps       \n"
           "=================\n")
     print("1. Document Creator (ArtGames101)")
+    print("2. VirtualFriend VF (ArtGames101)")
     print("0. Back")
     choice = user_choice()
     if choice == "1":
         storedoc()
+    if choice == "2":
+        storevf()
     if choice == "0":
         store()
 
+def storevf():
+    clear_screen()
+    print("VirtualFriend VF\n"
+          "\n"
+          "Description:\n"
+          "Have Fun with your own Virtual Friend\n"
+          "That has lots of features!\n"
+          "\n"
+          "Publisher:\n"
+          "ArtGames101\n")
+    print("i. Install")
+    print("0. Back")
+    choice = user_choice()
+    if choice == "i":
+        subprocess.call(("git", "clone", "https://github.com/ArtGames101/VirtualFriend-VF.git"))
+        input("Installed!")
+        notifi = open("log/notification.py", "w")
+        notifi.write("import time\n"
+                     "NOT = '{} |  {}'.format(time.ctime(), 'Installed Game (GunRush)')")
+        storetetris()
+    if choice == "0":
+        storegames()
+        
 def storedoc():
     clear_screen()
     print("Document Creator\n"
@@ -1028,6 +1109,7 @@ def storegames():
     print("3. Squirrel (Pygame)  (GOLD!)")
     print("4. Santas Little Helper (ArtGames101)  (Christmas Gift!)")
     print("5. Tetris  (ArtGames101)")
+    print("6. GunRush (MrBackPack)")
     print("0. Back")
     choice = user_choice()
     if choice == "1":
@@ -1040,9 +1122,36 @@ def storegames():
         slh()
     if choice == "5":
         storetetris()
+    if choice == "6":
+        storegunrush()
     if choice == "0":
         store()
 
+def storegunrush():
+    clear_screen()
+    print("GunRush\n"
+          "\n"
+          "Description:\n"
+          "None\n"
+          "\n"
+          "Publisher:\n"
+          "MrBackPack\n")
+    try:
+        from GunRush import run
+        print("\nInstalled!")
+    except:
+        print("i. Install")
+    print("0. Back")
+    choice = user_choice()
+    if choice == "i":
+        subprocess.call(("git", "clone", "https://github.com/ArtGames101/GunRush.git"))
+        input("Installed!")
+        notifi = open("log/notification.py", "w")
+        notifi.write("import time\n"
+                     "NOT = '{} |  {}'.format(time.ctime(), 'Installed Game (GunRush)')")
+        storetetris()
+    if choice == "0":
+        storegames()
 def storetetris():
     clear_screen()
     print("Tetris\n"
@@ -1236,7 +1345,10 @@ def goalphapps():
         passes()
 
 
-if safezone.NAME == None:
-    loading()
+if upg.stay == True:
+    if safezone.NAME == None:
+        loading()
+    else:
+        subprocess.call((sys.executable, "safe.py"))  
 else:
-    subprocess.call((sys.executable, "safe.py"))  
+    subprocess.call((sys.executable, "ArtSystem/run.py"))
