@@ -1,6 +1,6 @@
 # ArtSystem
 
-![Version](https://img.shields.io/badge/Version-v10.5-blue.svg?style=social)   ![Size](https://img.shields.io/badge/ArtSystem%20Size-768.0%20KB-green.svg)
+![Version](https://img.shields.io/badge/Version-v10.6-blue.svg?style=social)   ![Size](https://img.shields.io/badge/ArtSystem%20Size-848.0%20KB-green.svg)
 
 # Introduction
 
@@ -8,7 +8,7 @@ Welcome to the ArtSystem Github!
 
 ArtSystem is a small gaming console that is made in python!
 
-ArtSystem has 1000+ lines on code!!!!!!!
+ArtSystem has 1300+ lines on code!!!!!!!
 
 And lots of interesting features and Games!
 
