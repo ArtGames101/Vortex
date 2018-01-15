@@ -1,13 +1,15 @@
-# (c) ArtGames101 2017
+# (c) ArtGames101 2017 - 2018
 # This Console was created by ArtGames101 and is under copyright notice!
 
 # If you want to create your own version of this be my guest! there is sooooooo
 # much code like ALOT and its confusing!
+
 import sys, os, random, time, subprocess, psutil
 import urllib
 import config as c
 from data import gold as g
 from data import alphapps as alpha
+from data import anew
 from log import notification
 from user import safezone
 from data import upgradestay as upg
@@ -20,17 +22,21 @@ except:
     pass
 
 # Version
-version = "v10.7-Stable"
+vr = "10.8"
+version = "{}-Stable".format(vr)
 # Next Version
-nextup = "v10.8-Stable"
+nextup = "v10.9-Stable"
 
 error = open("log/lasterror.txt", "w")
 start = open("log/startlog.txt", "w")
+webb = open("web/name.py", "w")
+webb.write("name = '{}'".format(logind.USERNAME))
+webb.close()
 santa = False
 games = ["snake", "BattleSim", "squirrel", "Santa", "Tetris", "GunRush", "DocCreator", "VF"]
 apps = ["DocCreator", "VF"]
-gm = 5
-ap = 2
+gm = 6
+ap = 3
 pa = 2
 ad = ["Go Gold and get ALPHA games that are comming soon!", "Get Alphapps to install the newest apps!", "Squirrel (GO GOLD!) (Eat other squirrels to become the OMEGA SQUIRREL)", "Snake (a game where you have to eat apples!)", "BattleSim (The best battle simulator for python!)", "Tetris  (A Game where you have to stack blocks!)"]
 try:
@@ -80,6 +86,30 @@ def clear_screen():
 def user_choice():
     return input("\n>>> ").lower().strip()
 
+
+def new():
+    clear_screen()
+    try:
+       subprocess.call(('notify-send', 'ArtSystem Verification', 'Please enter your 6 digit code!'))
+    except:
+        pass
+    print("(A) ArtSystem {}\n"
+          "======================".format(vr))
+    print("\n"
+          "Please enter your 6 digit verification code\n"
+          "to continue!")
+    print("\n"
+          "?: Get it from the ArtSystem Github")
+    choice = user_choice()
+    if choice == "lxmpop":
+        confirm = open("data/anew.py", "w")
+        confirm.write("new = False")
+        input("Verification code accepted!")
+        confirm.close()
+        loading()
+    else:
+        input("Invalid Verification Code!")
+        new()
 def loading():
     clear_screen()
     if IS_WINDOWS:
@@ -982,10 +1012,9 @@ def changelog():
           "=================\n")
     print("Whats New in {}?".format(version))
     print("\n"
-          "* Added Py Web Browser!\n"
-          "* Changed Register Data\n"
-          "* Changed Login Screen\n"
-          "* Fixed Bugs")
+          "* Added New device verification\n"
+          "* Added Py Web Browser to store\n"
+          "* Updated Py Web Browser")
     print("\n"
           "<. Last Update   | 0. Back")
     choice = user_choice()
@@ -1001,12 +1030,10 @@ def lastupdate():
           "=================\n")
     print("Whats Was in the last update?!?!")
     print("\n"
-          "* Added New Game by MrBackPack\n"
-          "* Changed Upgrade (Added Options, Now automaticly goes to new version)\n"
-          "* Added Featured Games in store\n"
-          "* Added Welcome messages (Ubuntu, Raspberry pi, Windows)\n"
-          "* Added VirtualFriend to Apps Page")
-    input("\nBack")
+          "* Added Py Web Browser!\n"
+          "* Changed Register Data\n"
+          "* Changed Login Screen\n"
+          "* Fixed Bugs")
     changelog()
     
 def store():
@@ -1076,16 +1103,34 @@ def apps():
     print("=================\n"
           "      Apps       \n"
           "=================\n")
-    print("1. Document Creator (ArtGames101)")
-    print("2. VirtualFriend VF (ArtGames101)")
+    print("1. Py Web Browser   (ArtGames101)")
+    print("2. Document Creator (ArtGames101)")
+    print("3. VirtualFriend VF (ArtGames101)")
     print("0. Back")
     choice = user_choice()
     if choice == "1":
-        storedoc()
+        storeweb()
     if choice == "2":
+        storedoc()
+    if choice == "3":
         storevf()
     if choice == "0":
         store()
+
+def storeweb():
+    clear_screen()
+    print("Py Web Browser\n"
+          "\n"
+          "Description:\n"
+          "Search the web!\n"
+          "\n"
+          "Publisher:\n"
+          "ArtGames101\n")
+    print("Installed!")
+    print("0. Back")
+    choice = user_choice()
+    if choice == "0":
+        storegames()
 
 def storevf():
     clear_screen()
@@ -1388,9 +1433,12 @@ def goalphapps():
 
 
 if upg.stay == True:
-    if safezone.NAME == None:
-        loading()
+    if anew.new == True:
+        new()
     else:
-        subprocess.call((sys.executable, "safe.py"))  
+        if safezone.NAME == None:
+            loading()
+        else:
+            subprocess.call((sys.executable, "safe.py"))  
 else:
     subprocess.call((sys.executable, "ArtSystem/run.py"))

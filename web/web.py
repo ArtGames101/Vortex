@@ -1,5 +1,5 @@
 import subprocess, sys, os, time, webbrowser
-
+import name
 
 IS_WINDOWS = os.name == "nt"
 IS_MAC = sys.platform == "darwin"
@@ -16,16 +16,21 @@ def user_choice():
 
 def main():
     clear_screen()
-    print("===================\n"
-          "     Py Browser    \n"
-          "===================       {}".format(time.ctime()))
+    print("Welcome {}".format(name.name))
     print("\n"
-          "Enter a URL!")
-    print("\n"
+          "Suggested Websites:\n"
+          "1. Google.com\n"
+          "2. Github.com\n"
           "0. Exit")
+    print("\n"
+          "Enter URL")
     url = user_choice()
+    if url == "1":
+        webbrowser.open("https://google.com")
+    if url == "2":
+        webbrowser.open("https://github.com")
     if url == "0":
-        sys.exit()
+        sys.exit(1)
     else:
         try:
             webbrowser.open(url)
