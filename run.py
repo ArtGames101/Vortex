@@ -15,13 +15,14 @@ try:
     from user import logindata as logind
     from user import loginpass as loginp
     from user import parental as parent
+    from user import reminder as remind
 except:
     pass
 
 # Version
-version = "v10.6-Stable"
+version = "v10.7-Stable"
 # Next Version
-nextup = "v10.7-Stable"
+nextup = "v10.8-Stable"
 
 error = open("log/lasterror.txt", "w")
 start = open("log/startlog.txt", "w")
@@ -415,12 +416,23 @@ def login():
     except:
         pass
     try:
-        print("{}\n".format(logind.USERNAME))
+        print("\n{}\n".format(logind.USERNAME))
     except:
         register()
     print("\n"
           "Password: \n"
           "")
+    try:
+        if remind.rem == "None":
+            pass
+        else:
+            try:
+                print("\n"
+                      "Reminder : {}".format(remind.rem))
+            except:
+                pass
+    except:
+        pass
     choice = user_choice()
     if choice == loginp.PASSWORD:
         gold = open("data/gold.py", "w")
@@ -453,12 +465,38 @@ def registerp():
     choice = user_choice()
     loginpw.write("PASSWORD = '{}'".format(choice))
     loginpw.close()
+    registerl()
+
+def registerl():
     clear_screen()
-    print("Writing....")
-    time.sleep(5)
-    clear_screen()
-    input("Get Ready for restart!")
-    subprocess.call((sys.executable, "run.py"))
+    print("==========\n"
+          " Register \n"
+          "==========\n")
+    print("\n"
+          "Would you like a password reminder msg?")
+    print("\n"
+          "1. Yes  | 2. No")
+    choice = user_choice()
+    if choice == "1":
+        clear_screen()
+        rem = open("user/reminder.py", "w")
+        print("==========\n"
+              " Register \n"
+              "==========\n")
+        print("Type Reminder message")
+        choice = user_choice()
+        rem.write("rem = '{}'".format(choice))
+        clear_screen()
+        input("Registration Complete!")
+        rem.close()
+        subprocess.call((sys.executable, "run.py"))
+    if choice == "2":
+        rem = open("user/reminder.py", "w")
+        rem.write("rem = 'None'")
+        rem.close()
+        input("Registration Complete!")
+        subprocess.call((sys.executable, "run.py"))
+        
 
 def main():
     if c.currentgame == "snake":
@@ -491,6 +529,7 @@ def main():
         print("\a")
     print("c. Changelog")
     print("s. Store")
+    print("w. Py Web Browser")
     print("set. Settings")
     if santa == True:
         print("sa. Santa's Gift!")
@@ -548,6 +587,8 @@ def main():
             main()
     if choice == "n":
         notification()
+    if choice == "w":
+        subprocess.call((sys.executable, "web/web.py"))
     if choice == "=":
         menu()
     if choice == "0":
@@ -941,11 +982,10 @@ def changelog():
           "=================\n")
     print("Whats New in {}?".format(version))
     print("\n"
-          "* Added New Game by MrBackPack\n"
-          "* Changed Upgrade (Added Options, Now automaticly goes to new version)\n"
-          "* Added Featured Games in store\n"
-          "* Added Welcome messages (Ubuntu, Raspberry pi, Windows)\n"
-          "* Added VirtualFriend to Apps Page")
+          "* Added Py Web Browser!\n"
+          "* Changed Register Data\n"
+          "* Changed Login Screen\n"
+          "* Fixed Bugs")
     print("\n"
           "<. Last Update   | 0. Back")
     choice = user_choice()
@@ -961,9 +1001,11 @@ def lastupdate():
           "=================\n")
     print("Whats Was in the last update?!?!")
     print("\n"
-          "* Added New Upgrade (Added Data Trancefer, confirm update)\n"
-          "* Fixed Guest accounts\n"
-          "* Fixed Minor Bugs")
+          "* Added New Game by MrBackPack\n"
+          "* Changed Upgrade (Added Options, Now automaticly goes to new version)\n"
+          "* Added Featured Games in store\n"
+          "* Added Welcome messages (Ubuntu, Raspberry pi, Windows)\n"
+          "* Added VirtualFriend to Apps Page")
     input("\nBack")
     changelog()
     

@@ -30,7 +30,7 @@ def warning():
     print("==================\n"
           " ArtSystem Update \n"
           "==================\n")
-    print("Would you like to upgrade to ArtSystem v10.7-Stable?\n"
+    print("Would you like to upgrade to ArtSystem v10.8-Stable?\n"
           "\n"
           "WARNING! : If the newest version has not been released\n"
           "           The Current version will be installed\n"
@@ -48,14 +48,14 @@ def warning():
         clear_screen()
         print("1 Install  2 Transfer data 3 Confirm Update")
         print("\n"
-              "Installing ArtSystem v10.7-Stable...")
+              "Installing ArtSystem v10.8-Stable...")
         time.sleep(random.choice(t))
         subprocess.call(("git", "clone", repo))
         time.sleep(random.choice(t))
         clear_screen()
         print("✓ Install  2 Transfer data 3 Confirm Update")
         print("\n"
-              "Transfering data to v10.7-Stable...")
+              "Transfering data to v10.8-Stable...")
         user = open("ArtSystem/user/logindata.py", "w")
         user.write("USERNAME = '{}'".format(logindata.USERNAME))
         user.close()
