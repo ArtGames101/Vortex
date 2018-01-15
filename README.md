@@ -34,6 +34,7 @@ What things does ArtSystem have?
 * Safezone
 * FAST Upgrading
 * Lag Free System
+* Working Web Browser
 
 And More!
 
