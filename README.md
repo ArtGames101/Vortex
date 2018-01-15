@@ -1,6 +1,11 @@
 # ArtSystem
 
-![Version](https://img.shields.io/badge/Version-v10.7-blue.svg?style=social)   ![Size](https://img.shields.io/badge/ArtSystem%20Size-864.0%20KB-green.svg)
+![Version](https://img.shields.io/badge/Version-v10.8-blue.svg?style=social)   ![Size](https://img.shields.io/badge/ArtSystem%20Size-1.6%20MB-green.svg)
+
+
+# Verification code
+
+The Verification code is : lxmpop
 
 # Introduction
 
