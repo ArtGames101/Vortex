@@ -3,10 +3,12 @@
 
 # This is the upgrade module (DONT TAMPER WITH!)
 # ✓ Verified
+
 import subprocess
 import sys, os, time, random
 from user import logindata
 from user import loginpass
+from user import img
 
 repo = "https://github.com/ArtGames101/ArtSystem.git"
 t = [2, 4, 6, 8, 10]
@@ -30,7 +32,7 @@ def warning():
     print("==================\n"
           " ArtSystem Update \n"
           "==================\n")
-    print("Would you like to upgrade to ArtSystem v10.9-Stable?\n"
+    print("Would you like to upgrade to ArtSystem v11.0-Stable?\n"
           "\n"
           "WARNING! : If the newest version has not been released\n"
           "           The Current version will be installed\n"
@@ -38,33 +40,39 @@ def warning():
           "WARNING! : if you do not have wifi it will not install\n"
           "           but it will say it has! so dont mess with\n"
           "           the settings until it has actualy installed!\n"
+          "INFO: if you do not have the correct data for logindata\n"
+          "      , loginpass & img then it will not work!"
           "\n"
-          "\n"
-          "1. Install ArtSystem v10.7\n"
+          "1. Install ArtSystem v11.0\n"
           "\n"
           "0. Exit")
     choice = user_choice()
     if choice == "1":
         clear_screen()
-        print("1 Install  2 Transfer data 3 Confirm Update")
+        print("1 Install  2 Transfer data 3 Confirm Update\n"
+              "---------")
         print("\n"
-              "Installing ArtSystem v10.9-Stable...")
+              "Installing ArtSystem v11.0-Stable...")
         time.sleep(random.choice(t))
         subprocess.call(("git", "clone", repo))
         time.sleep(random.choice(t))
         clear_screen()
-        print("✓ Install  2 Transfer data 3 Confirm Update")
+        print("✓ Install  2 Transfer data 3 Confirm Update\n"
+              "--------------------------")
         print("\n"
-              "Transfering data to v10.9-Stable...")
+              "Transfering data to v11.0-Stable...")
         user = open("ArtSystem/user/logindata.py", "w")
         user.write("USERNAME = '{}'".format(logindata.USERNAME))
         user.close()
         passw = open("ArtSystem/user/loginpass.py", "w")
         passw.write("PASSWORD = '{}'".format(loginpass.PASSWORD))
         passw.close()
+        imga = open("ArtSystem/user/img.py", "w")
+        imga.write("usrimg = '{}'".format(img.usrimg))
         time.sleep(random.choice(t))
         clear_screen()
-        print("✓ Install  ✓ Transfer data 3 Confirm Update")
+        print("✓ Install  ✓ Transfer data 3 Confirm Update\n"
+              "-------------------------------------------\n")
         print("\n"
               "Confirming Update...")
         time.sleep(random.choice(t))
@@ -87,7 +95,7 @@ def info():
     if choice == "1":
         n = open("data/upgradestay.py", "w")
         n.write("stay = False")
-        input("Push Enter!")
+        input("Push enter to save this data!")
         n.close()
         subprocess.call((sys.executable, "ArtSystem/run.py"))
     if choice == "0":

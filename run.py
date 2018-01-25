@@ -1,10 +1,9 @@
 # (c) ArtGames101 2017 - 2018
 # This Console was created by ArtGames101 and is under copyright notice!
 
-# If you want to create your own version of this be my guest! there is sooooooo
-# much code like ALOT and its confusing!
+# 
 
-import sys, os, random, time, subprocess, psutil
+import sys, os, random, time, subprocess
 import urllib
 import config as c
 from data import gold as g
@@ -18,23 +17,27 @@ try:
     from user import loginpass as loginp
     from user import parental as parent
     from user import reminder as remind
+    from user import img
 except:
     pass
 
 # Version
-vr = "10.8"
-version = "{}-Stable".format(vr)
+vr = "10.9"
+version = "v{}-Stable".format(vr)
 # Next Version
-nextup = "v10.9-Stable"
+nextup = "v11.0-Stable"
 
 error = open("log/lasterror.txt", "w")
 start = open("log/startlog.txt", "w")
-webb = open("web/name.py", "w")
-webb.write("name = '{}'".format(logind.USERNAME))
+try:
+    webb = open("web/name.py", "w")
+    webb.write("name = '{}'".format(logind.USERNAME))
+except:
+    pass
 webb.close()
 santa = False
 games = ["snake", "BattleSim", "squirrel", "Santa", "Tetris", "GunRush", "DocCreator", "VF"]
-apps = ["DocCreator", "VF"]
+apps = ["DocCreator", "VF", "WebBrowser"]
 gm = 6
 ap = 3
 pa = 2
@@ -94,22 +97,49 @@ def new():
     except:
         pass
     print("(A) ArtSystem {}\n"
-          "======================".format(vr))
+          "==========================".format(vr))
     print("\n"
           "Please enter your 6 digit verification code\n"
           "to continue!")
     print("\n"
           "?: Get it from the ArtSystem Github")
     choice = user_choice()
-    if choice == "lxmpop":
+    if choice == "pa64ap":
         confirm = open("data/anew.py", "w")
         confirm.write("new = False")
         input("Verification code accepted!")
         confirm.close()
-        loading()
+        neww()
     else:
         input("Invalid Verification Code!")
         new()
+
+def neww():
+    clear_screen()
+    print("(A) ArtSystem {}\n"
+          "==========================".format(vr))
+    print("\n"
+          "Welcome to ArtSystem!\n"
+          "\n"
+          "Here is what your ArtSystem can do!\n"
+          "\n"
+          "* Plays Games\n"
+          "* Manages Accounts\n"
+          "* Browses the web\n"
+          " And More!")
+    input("\n"
+          "Enter")
+    clear_screen()
+    print("(A) ArtSystem {}\n"
+          "==========================".format(vr))
+    print("\n"
+          "Your ArtSystem Comes with Restore Options and Web Protection!\n"
+          "\n"
+          "Push Enter to Start ArtSystem!\n")
+    input(".")
+    loading()
+
+
 def loading():
     clear_screen()
     if IS_WINDOWS:
@@ -119,7 +149,7 @@ def loading():
             pass
     else:
         try:
-            subprocess.call(('notify-send', 'ArtSystem Startup', 'ArtSystem is starting up...'))
+            subprocess.call(('notify-send', 'ArtSystem Startup', 'ArtSystem Vortex is starting up...'))
         except:
             try:
                 subprocess.call(('zenity', '--info', '--text="ArtSystem is starting up!"', '--timeout=5 2'))
@@ -127,7 +157,7 @@ def loading():
             except:
                 pass
     print("\n"
-      "     /------------\      \n"
+      "     / -----------\      \n"
       "    /              \     \n"
       "   /                \    \n"
       "  |                  |   \n"
@@ -138,11 +168,11 @@ def loading():
       "  |                  |   \n"
       "                         \n"
       "        ArtSystem        \n")
-    print("Starting ArtSystem... |")
+    print("            |")
     time.sleep(1)
     clear_screen()
     print("\n"
-      "     /------------\      \n"
+      "     /- ----------\      \n"
       "    /              \     \n"
       "   /                \    \n"
       "  |                  |   \n"
@@ -153,11 +183,11 @@ def loading():
       "  |                  |   \n"
       "                         \n"
       "        ArtSystem        \n")
-    print("Starting ArtSystem... /")
+    print("            /")
     time.sleep(1)
     clear_screen()
     print("\n"
-      "     /------------\      \n"
+      "     /-- ---------\      \n"
       "    /              \     \n"
       "   /                \    \n"
       "  |                  |   \n"
@@ -168,11 +198,11 @@ def loading():
       "  |                  |   \n"
       "                         \n"
       "        ArtSystem        \n")
-    print("Starting ArtSystem... -")
+    print("            -")
     time.sleep(1)
     clear_screen()
     print("\n"
-      "     /------------\      \n"
+      "     /--- --------\      \n"
       "    /              \     \n"
       "   /                \    \n"
       "  |                  |   \n"
@@ -183,11 +213,11 @@ def loading():
       "  |                  |   \n"
       "                         \n"
       "        ArtSystem        \n")
-    print("Starting ArtSystem... |")
+    print("            |")
     time.sleep(1)
     clear_screen()
     print("\n"
-      "     /------------\      \n"
+      "     /---- -------\      \n"
       "    /              \     \n"
       "   /                \    \n"
       "  |                  |   \n"
@@ -198,37 +228,7 @@ def loading():
       "  |                  |   \n"
       "                         \n"
       "        ArtSystem        \n")
-    print("Starting ArtSystem... -")
-    time.sleep(1)
-    clear_screen()
-    print("\n"
-      "     /------------\      \n"
-      "    /              \     \n"
-      "   /                \    \n"
-      "  |                  |   \n"
-      "  |                  |   \n"
-      "  |__________________|   \n"
-      "  |                  |   \n"
-      "  |                  |   \n"
-      "  |                  |   \n"
-      "                         \n"
-      "        ArtSystem        \n")
-    print("Starting ArtSystem... \ ")
-    time.sleep(1)
-    clear_screen()
-    print("\n"
-      "     /------------\      \n"
-      "    /              \     \n"
-      "   /                \    \n"
-      "  |                  |   \n"
-      "  |                  |   \n"
-      "  |__________________|   \n"
-      "  |                  |   \n"
-      "  |                  |   \n"
-      "  |                  |   \n"
-      "                         \n"
-      "        ArtSystem        \n")
-    print("Starting ArtSystem... |")
+    print("            -")
     time.sleep(1)
     clear_screen()
     print("\n"
@@ -243,7 +243,97 @@ def loading():
       "  |                  |   \n"
       "                         \n"
       "        ArtSystem        \n")
-    print("Starting ArtSystem... |")
+    print("            \ ")
+    time.sleep(1)
+    clear_screen()
+    print("\n"
+      "     /------ -----\      \n"
+      "    /              \     \n"
+      "   /                \    \n"
+      "  |                  |   \n"
+      "  |                  |   \n"
+      "  |__________________|   \n"
+      "  |                  |   \n"
+      "  |                  |   \n"
+      "  |                  |   \n"
+      "                         \n"
+      "        ArtSystem        \n")
+    print("            |")
+    time.sleep(1)
+    clear_screen()
+    print("\n"
+      "     /------- ----\      \n"
+      "    /              \     \n"
+      "   /                \    \n"
+      "  |                  |   \n"
+      "  |                  |   \n"
+      "  |__________________|   \n"
+      "  |                  |   \n"
+      "  |                  |   \n"
+      "  |                  |   \n"
+      "                         \n"
+      "        ArtSystem        \n")
+    print("            |")
+    time.sleep(1)
+    clear_screen()
+    print("\n"
+      "     /-------- ---\      \n"
+      "    /              \     \n"
+      "   /                \    \n"
+      "  |                  |   \n"
+      "  |                  |   \n"
+      "  |__________________|   \n"
+      "  |                  |   \n"
+      "  |                  |   \n"
+      "  |                  |   \n"
+      "                         \n"
+      "        ArtSystem        \n")
+    print("            /")
+    time.sleep(1)
+    clear_screen()
+    print("\n"
+      "     /--------- --\      \n"
+      "    /              \     \n"
+      "   /                \    \n"
+      "  |                  |   \n"
+      "  |                  |   \n"
+      "  |__________________|   \n"
+      "  |                  |   \n"
+      "  |                  |   \n"
+      "  |                  |   \n"
+      "                         \n"
+      "        ArtSystem        \n")
+    print("            -")
+    time.sleep(1)
+    clear_screen()
+    print("\n"
+      "     /---------- -\      \n"
+      "    /              \     \n"
+      "   /                \    \n"
+      "  |                  |   \n"
+      "  |                  |   \n"
+      "  |__________________|   \n"
+      "  |                  |   \n"
+      "  |                  |   \n"
+      "  |                  |   \n"
+      "                         \n"
+      "        ArtSystem        \n")
+    print("            |")
+    time.sleep(1)
+    clear_screen()
+    print("\n"
+      "     /----------- \      \n"
+      "    /              \     \n"
+      "   /                \    \n"
+      "  |                  |   \n"
+      "  |                  |   \n"
+      "  |__________________|   \n"
+      "  |                  |   \n"
+      "  |                  |   \n"
+      "  |                  |   \n"
+      "                         \n"
+      "        ArtSystem        \n")
+    print("            -")
     time.sleep(1)
     clear_screen()
     print("\n"
@@ -258,82 +348,7 @@ def loading():
       "  |                  |   \n"
       "                         \n"
       "        ArtSystem        \n")
-    print("Starting ArtSystem... /")
-    time.sleep(1)
-    clear_screen()
-    print("\n"
-      "     /------------\      \n"
-      "    /              \     \n"
-      "   /                \    \n"
-      "  |                  |   \n"
-      "  |                  |   \n"
-      "  |__________________|   \n"
-      "  |                  |   \n"
-      "  |                  |   \n"
-      "  |                  |   \n"
-      "                         \n"
-      "        ArtSystem        \n")
-    print("Starting ArtSystem... -")
-    time.sleep(1)
-    clear_screen()
-    print("\n"
-      "     /------------\      \n"
-      "    /              \     \n"
-      "   /                \    \n"
-      "  |                  |   \n"
-      "  |                  |   \n"
-      "  |__________________|   \n"
-      "  |                  |   \n"
-      "  |                  |   \n"
-      "  |                  |   \n"
-      "                         \n"
-      "        ArtSystem        \n")
-    print("Starting ArtSystem... |")
-    time.sleep(1)
-    clear_screen()
-    print("\n"
-      "     /------------\      \n"
-      "    /              \     \n"
-      "   /                \    \n"
-      "  |                  |   \n"
-      "  |                  |   \n"
-      "  |__________________|   \n"
-      "  |                  |   \n"
-      "  |                  |   \n"
-      "  |                  |   \n"
-      "                         \n"
-      "        ArtSystem        \n")
-    print("Starting ArtSystem... -")
-    time.sleep(1)
-    clear_screen()
-    print("\n"
-      "     /------------\      \n"
-      "    /              \     \n"
-      "   /                \    \n"
-      "  |                  |   \n"
-      "  |                  |   \n"
-      "  |__________________|   \n"
-      "  |                  |   \n"
-      "  |                  |   \n"
-      "  |                  |   \n"
-      "                         \n"
-      "        ArtSystem        \n")
-    print("Starting ArtSystem... \ ")
-    time.sleep(1)
-    clear_screen()
-    print("\n"
-      "     /------------\      \n"
-      "    /              \     \n"
-      "   /                \    \n"
-      "  |                  |   \n"
-      "  |                  |   \n"
-      "  |__________________|   \n"
-      "  |                  |   \n"
-      "  |                  |   \n"
-      "  |                  |   \n"
-      "                         \n"
-      "        ArtSystem        \n")
-    print("Starting ArtSystem... |")
+    print("            \ ")
     time.sleep(1)
     welcome()
     
@@ -341,37 +356,142 @@ def loading():
 def welcome():
     clear_screen()
     try:
+        from user import logindata
+        from user import img
+        from user import loginpass
+        print(logindata.USERNAME)
+        print(img.usrimg)
+        print(loginpass.PASSWORD)
+        clear_screen()
+    except:
+        clear_screen()
+        print("============\n"
+              " File Error \n"
+              "============\n")
+        print("Your Login files have stoped working or you are not registered!!!\n"
+              "What do you want to do?")
+        print("\n"
+              "1. Register (Will Write Fresh data)\n"
+              "2. Guest Account  (Use Guest account for now!)\n"
+              "3. Restore  (Restore 'LAST' Save data)")
+        choice = user_choice()
+        if choice == "1":
+            register()
+        if choice == "2":
+            guestmain()
+        if choice == "3":
+            restore()
+    try:
         subprocess.call(('notify-send', 'ArtSystem Startup', 'ArtSystem has sucessfuly Loaded!'))
     except:
         try:
-            subprocess.call(('zenity', '--info', '--text="ArtSystem has sucessfuly Loaded!"', '--timeout=5 2'))
+            subprocess.call(('zenity', '--info', '--text="ArtSystem Vortex has sucessfuly Loaded!"', '--timeout=5 2'))
             clear_screen()
         except:
             pass
-    print("===================\n"
-          "+   +ArtSystem+   +\n"
-          "===================               {}".format(version))
+        if img.usrimg == None:
+            print("_________\n"
+                  "         |\n"
+                  "         | 1. [?] {}\n"
+                  "         |\n"
+                  "         | 2. [G] Guest\n"
+                  " Welcome |\n"
+                  "         |\n"
+                  "         | r. Register\n"
+                  "         | 0. More Options\n"
+                  "_________|\n".format(logind.USERNAME))
+            choice = user_choice()
+            if choice == "1":
+                login()
+            if choice == "2":
+                guesta()
+            if choice == "r":
+                register()
+            if choice == "0":
+                try:
+                    mainmore()
+                except:
+                    pass
+            else:
+                welcome()
+        else:
+            print("_________\n"
+                  "         |\n"
+                  "         | 1. [{}] {}\n"
+                  "         |\n"
+                  "         | 2. [G] Guest\n"
+                  " Welcome |\n"
+                  "         |\n"
+                  "         | r. Register\n"
+                  "         | 0. More Options\n"
+                  "_________|\n".format(img.usrimg, logind.USERNAME))
+            choice = user_choice()
+            if choice == "1":
+                login()
+            if choice == "2":
+                guesta()
+            if choice == "r":
+                register()
+            if choice == "0":
+                try:
+                    mainmore()
+                except:
+                    pass
+            else:
+                welcome()
+def mainmore():
+    clear_screen()
+    print("==============\n"
+          " More Options \n"
+          "==============\n")
     print("\n"
-          "1. Login    | 2. Register\n"
-          "3. Guest    | 4. Refer   \n")
-    print("\n"
-          "      0. Shutdown          ")
+          "1. Refer\n"
+          "2. Restore\n"
+          "3. Shutdown Options\n"
+          "\n"
+           "0. Back")
     choice = user_choice()
     if choice == "1":
-        login()
+        refer()
     if choice == "2":
-        register()
+        restore()
     if choice == "3":
-        guesta()
-    if choice == "4":
-        clear_screen()
-        print("Help the community by refering ArtSystem to someone!")
-        print("\n\nURL : https://github.com/ArtGames101/ArtSystem")
-        input("\nBack")
-        welcome()
-    if choice == "0":
         wshutdown()
+    if choice == "0":
+        welcome()
 
+
+def refer():
+    clear_screen()
+    print("=================\n"
+          " Refer ArtSystem \n"
+          "=================\n")
+    print("\n"
+          "Github : https://github.com/ArtGames101/ArtSystem\n"
+          "\n"
+          "Install cmd : git clone https://github.com/ArtGames101/ArtSystem.git")
+    input("\n"
+          "Back")
+    mainmore()
+
+def restore():
+    clear_screen()
+    try:
+        from data.restore import name, passw
+    except:
+        input("No Data to restore!")
+        mainmore()
+    print("=========\n"
+          " Restore \n"
+          "=========\n")
+    print("ArtSystem is restoring your old data!")
+    usr = open("user/logindata.py", "w")
+    usr.write("USERNAME = '{}'".format(name.old))
+    pa = open("user/loginpass.py", "w")
+    pa.write("PASSWORD = '{}'".format(passw.old))
+    input("ArtSystem Restored!")
+    subprocess.call((sys.executable, "run.py"))
+    
 def wshutdown():
     clear_screen()
     print("==========\n"
@@ -412,72 +532,62 @@ def guesta():
     print("1. Yes    | 2. No")
     choice = user_choice()
     if choice == "1":
-        guest()
+        guestmain()
     if choice == "2":
         welcome()
-def guest():
-    clear_screen()
-    loginw = open("user/logindata.py", "w")
-    loginpw = open("user/loginpass.py", "w")
-    loginw.write("USERNAME = 'Guest'")
-    loginpw.write("PASSWORD = 'guestie'")
-    loginw.close()
-    loginpw.close()
-    print("===============\n"
-          " Guest Account \n"
-          "===============\n")
-    input("You Are logging in as a guest get ready for restart!")
-    subprocess.call((sys.executable, "run.py"))
+
     
 def login():
     clear_screen()
     print("=========\n"
-          "  Login  \n"
+          " Welcome \n"
           "=========\n")
-    if logind.USERNAME == None:
-        register()
-    else:
-        pass
     try:
-        if logind.USERNAME == 'Guest':
-            print("Guest Passwords are: guestie")
-        else:
-            pass
+        print("{}".format(logind.USERNAME))
     except:
-        pass
-    try:
-        print("\n{}\n".format(logind.USERNAME))
-    except:
+        input("No User found!")
         register()
+    print("\n{}".format(remind.rem))
     print("\n"
-          "Password: \n"
-          "")
-    try:
-        if remind.rem == "None":
-            pass
-        else:
-            try:
-                print("\n"
-                      "Reminder : {}".format(remind.rem))
-            except:
-                pass
-    except:
-        pass
+          "Password\n"
+          "\n"
+          "_____________")
     choice = user_choice()
     if choice == loginp.PASSWORD:
-        gold = open("data/gold.py", "w")
-        alphapps = open("data/alphapps.py", "w")
-        alphapps.write("A = False")
-        gold.write("g = False")
         main()
     else:
-        login()
+        loginf()
 
+def loginf():
+    clear_screen()
+    print("=========\n"
+          " Welcome \n"
+          "=========\n")
+    try:
+        print("{}".format(logind.USERNAME))
+    except:
+        input("No User found!")
+        register()
+    print("\n{}".format(remind.rem))
+    print("\n"
+          "Password\n"
+          "\n"
+          "_____________")
+    print("\n"
+          "Incorrect Password!")
+    choice = user_choice()
+    if choice == loginp.PASSWORD:
+        main()
+    else:
+        loginf()
+        
 def register():
     clear_screen()
     print("==========\n"
           " Register \n"
           "==========\n")
+    print("1 Username  2 Password 3 Reminder 4 Avatar\n"
+          "----------")
     loginw = open("user/logindata.py", "w")
     print("First Choose a Username!")
     choice = user_choice()
@@ -490,6 +600,8 @@ def registerp():
     print("==========\n"
           " Register \n"
           "==========\n")
+    print("✓ Username  2 Password 3 Reminder 4 Avatar\n"
+          "----------------------")
     loginpw = open("user/loginpass.py", "w")
     print("Now Choose a password")
     choice = user_choice()
@@ -502,6 +614,8 @@ def registerl():
     print("==========\n"
           " Register \n"
           "==========\n")
+    print("✓ Username  ✓ Password 3 Reminder 4 Avatar\n"
+          "---------------------------------")
     print("\n"
           "Would you like a password reminder msg?")
     print("\n"
@@ -513,20 +627,89 @@ def registerl():
         print("==========\n"
               " Register \n"
               "==========\n")
+        print("✓ Username  ✓ Password 3 Reminder 4 Avatar\n"
+              "---------------------------------")
         print("Type Reminder message")
         choice = user_choice()
         rem.write("rem = '{}'".format(choice))
-        clear_screen()
-        input("Registration Complete!")
         rem.close()
-        subprocess.call((sys.executable, "run.py"))
+        registeri()
     if choice == "2":
         rem = open("user/reminder.py", "w")
         rem.write("rem = 'None'")
         rem.close()
-        input("Registration Complete!")
+        registeri()
+
+def registeri():
+    img = open("user/img.py", "w")
+    clear_screen()
+    print("==========\n"
+          " Register \n"
+          "==========\n")
+    print("✓ Username  ✓ Password ✓ Reminder 4 Avatar\n"
+          "------------------------------------------")
+    print("\n"
+          "Pick an avatar!")
+    print("\n"
+          "1. :D\n"
+          "2. ^.^\n"
+          "3. ?!\n"
+          "4. :)\n"
+          "5. :4)\n"
+          "c. Custom")
+    choice = user_choice()
+    usr = open("data/restore/name.py", "w")
+    usr.write("old = '{}'".format(logind.USERNAME))
+    pas = open("data/restore/passw.py", "w")
+    pas.write("old = '{}'".format(loginp.PASSWORD))
+    usr.close()
+    pas.close()
+    if choice == "1":
+        img.write("usrimg = ':D'")
+        input("Registration Complete!\n"
+              "\n"
+              "Enter")
+        img.close()
         subprocess.call((sys.executable, "run.py"))
-        
+    if choice == "2":
+        img.write("usrimg = '^.^'")
+        input("Registration Complete!\n"
+              "\n"
+              "Enter")
+        img.close()
+        subprocess.call((sys.executable, "run.py"))
+    if choice == "3":
+        img.write("usrimg = '?!'")
+        input("Registration Complete!\n"
+              "\n"
+              "Enter")
+        img.close()
+        subprocess.call((sys.executable, "run.py"))
+    if choice == "4":
+        img.write("usrimg = ':)'")
+        input("Registration Complete!\n"
+              "\n"
+              "Enter")
+        img.close()
+        subprocess.call((sys.executable, "run.py"))
+    if choice == "5":
+        img.write("usrimg = ':4)'")
+        input("Registration Complete!\n"
+              "\n"
+              "Enter")
+        img.close()
+        subprocess.call((sys.executable, "run.py"))
+    if choice == "c":
+        clear_screen()
+        print("Write an Avatar\n"
+              "Recomended : Use 3 characters at most!")
+        choice = user_choice()
+        img.write("usrimg = '{}'".format(choice))
+        input("Registration Complete!\n"
+              "\n"
+              "Enter")
+        img.close()
+        subprocess.call((sys.executable, "run.py"))
 
 def main():
     if c.currentgame == "snake":
@@ -547,10 +730,9 @@ def main():
         game = "VF"
     else:
         game = "None"
-    size = '{:.2f} MiB'.format(__import__('psutil').Process().memory_full_info().uss / 1024 ** 2)
     clear_screen()
     print("========================================================\n"
-          "=. {}        |  {}     \n"
+          " {}        |  {}     \n"
           "========================================================\n".format(c.NAMETAG, time.ctime()))
 
     if game in games:
@@ -567,7 +749,10 @@ def main():
         pass
     print("n. Notifications")
     print("\n{}".format(random.choice(ad)))
-    print("\n0. Logout")
+    print("\n\n\n"
+          " ____________________________________________________________________\n"
+          "|(A). Start |                                   u. Upgrade           |\n"
+          "|___________|________________________________________________________|")
     choice = user_choice()
     if choice == "(o)":
         if game == "DocCreator":
@@ -619,12 +804,116 @@ def main():
         notification()
     if choice == "w":
         subprocess.call((sys.executable, "web/web.py"))
-    if choice == "=":
+    if choice == "(A)":
         menu()
+    if choice == "A":
+        menu()
+    if choice == "a":
+        menu()
+    if choice == "u":
+        subprocess.call((sys.executable, "upgrade.py"))
     if choice == "0":
         logout()
     else:
         main()
+
+def guestmain():
+    if c.currentgame == "snake":
+        game = "snake"
+    if c.currentgame == "Tetris":
+        game = "Tetris"
+    elif c.currentgame == "BattleSim":
+        game = "BattleSim"
+    elif c.currentgame == "Santa":
+        game = "Santa"
+    elif c.currentgame == "squirrel":
+        game = "squirrel"
+    elif c.currentgame == "GunRush":
+        game = "GunRush"
+    elif c.currentgame == "DocCreator":
+        game = "DocCreator"
+    elif c.currentgame == "VF":
+        game = "VF"
+    else:
+        game = "None"
+    clear_screen()
+    print("========================================================\n"
+          "=. Guest        |  {}     \n"
+          "========================================================\n".format(time.ctime()))
+
+    if game in games:
+        print("(o). Disc Game ({})".format(game))
+    else:
+        print("\a")
+    print("c. Changelog")
+    print("s. Store")
+    print("w. Py Web Browser")
+    print("set. Settings")
+    if santa == True:
+        print("sa. Santa's Gift!")
+    else:
+        pass
+    print("n. Notifications")
+    print("\n{}".format(random.choice(ad)))
+    print("\n0. Logout")
+    choice = user_choice()
+    if choice == "(o)":
+        if game == "DocCreator":
+            subprocess.call((sys.executable, "DocCreator/run.py"))
+        if game == "VF":
+            subprocess.call((sys.executable, "VirtualFriend-VF/run.py"))
+        if game == "snake":
+            subprocess.call(("python", "snake.py"))
+        if game == "Tetris":
+            subprocess.call(("python", "tetris.py"))
+        if game == "squirrel":
+            subprocess.call(("python", "squirrel.py"))
+        if game == "BattleSim":
+            subprocess.call((sys.executable, "BattleSim/run.py"))
+        if game == "Santa":
+            subprocess.call((sys.executable, "SantasLittleHelper/santa.py"))
+        if game == "GunRush":
+            subprocess.call((sys.executable, "GunRush/run.py"))
+    if choice == "s":
+        if parent.PAPASS == None:
+            store()
+        else:
+            clear_screen()
+            print("Enter Parental Control Password")
+            choice = user_choice()
+            if choice == parent.PAPASS:
+                store()
+            else:
+                guestmain()
+    if choice == "c":
+        changelog()
+    if choice == "set":
+        if parent.PAPASS == None:
+            settings()
+        else:
+            clear_screen()
+            print("Enter Parental Control Password")
+            choice = user_choice()
+            if choice == parent.PAPASS:
+                settings()
+            else:
+                guestmain()
+    if choice == "sa":
+        if santa == True:
+            santagift()
+        else:
+            guestmain()
+    if choice == "n":
+        notification()
+    if choice == "w":
+        subprocess.call((sys.executable, "web/web.py"))
+    if choice == "=":
+        guestmenu()
+    if choice == "0":
+        guestlogout()
+    else:
+        guestmain()
+
 
 def notification():
     clear_screen()
@@ -648,7 +937,7 @@ def notification():
 def settings():
     if logind.USERNAME == "Guest":
         input("Guests cant do that!")
-        main()
+        guestmain()
     else:
         clear_screen()
         print("============\n"
@@ -730,6 +1019,7 @@ def setupsafezone():
           "SafeZone can be undone if wanted to!\n"
           "When you run the default launcher it will send you to SafeZone\n"
           "So you dont have to do this again!\n"
+
           "\n"
           "WARNING : Safezone may be buggy when reverting back!")
     print("\n"
@@ -909,24 +1199,25 @@ def santagift():
         
         
 def menu():
-    size = '{:.2f} MiB'.format(__import__('psutil').Process().memory_full_info().uss / 1024 ** 2)
     clear_screen()
-    print("========\n"
-          " Status \n"
-          "========\n")
-    print("Current Version:\n"
-          "{}".format(version))
-    print("Games in Store:\n"
-          "{}".format(gm))
-    print("Apps in Store:\n"
-          "{}".format(ap))
-    print("Passes in Store:\n"
-          "{}".format(pa))
-    print("Size of ArtSystem:\n"
-          "{}".format(size))
-    input("\nBack")
-    main()
+    print("=======\n"
+          " Start \n"
+          "=======\n")
+    print("1. Loop Game")
+    print("2. Shutdown Options")
+    print("0. Back")
+    choice = user_choice()
+    if choice == "1":
+        loop()
+    if choice == "2":
+        logout()
+    if choice == "0":
+        main()
 
+def loop():
+    r = ["Ha", "LOOOOOOOOOOOOOOOOOLP", "Restart to exit!", "lololodloefokog", "fuywefuwegfuyehf", "My name is Jeff", "idk"]
+    input("{} | Push Enter".format(random.choice(r)))
+    loop()
 def logout():
     clear_screen()
     print("==========\n"
@@ -965,6 +1256,42 @@ def logout():
     else:
         logout()
 
+def guestlogout():
+    clear_screen()
+    print("==========\n"
+          "  Logout  \n"
+          "==========\n")
+    print("1. Restart")
+    print("2. Shutdown")
+    print("3. Logout")
+    print("0. Back")
+    choice = user_choice()
+    if choice == "1":
+        subprocess.call((sys.executable, "run.py"))
+    if choice == "2":
+        clear_screen()
+        print("\n"
+              "     /------------\      \n"
+              "    /              \     \n"
+              "   /                \    \n"
+              "  |                  |   \n"
+              "  |                  |   \n"
+              "  |__________________|   \n"
+              "  |                  |   \n"
+              "  |                  |   \n"
+              "  |                  |   \n"
+              "\n"
+              "        ArtSystem        \n")
+        print("Shutdown!")
+        sys.exit(1)
+    if choice == "3":
+        welcome()
+    if choice == "0":
+        guestmain()
+    else:
+        guestlogout()
+
+        
 def wait():
     clear_screen()
     print("========\n"
@@ -1012,9 +1339,16 @@ def changelog():
           "=================\n")
     print("Whats New in {}?".format(version))
     print("\n"
-          "* Added New device verification\n"
-          "* Added Py Web Browser to store\n"
-          "* Updated Py Web Browser")
+          "* Added New Main Screen\n"
+          "* Added New Login Screen\n"
+          "* Added Restore Option\n"
+          "* Added New registation options\n"
+          "* Added Avatars\n"
+          "* Added Login File Errors (You can now restore them when they\n"
+          "  are not working!)\n"
+          "* Squashed Heaps of bugs\n"
+          "* Guests now get their own Seperate Console!\n"
+          "* Added Start Menu (May be removed!)")
     print("\n"
           "<. Last Update   | 0. Back")
     choice = user_choice()
