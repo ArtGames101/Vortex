@@ -5,7 +5,7 @@
 
 # Verification code
 
-The Verification code is : lxmpop
+The Verification code is : pa64ap
 
 # Introduction
 
@@ -13,7 +13,7 @@ Welcome to the ArtSystem Github!
 
 ArtSystem is a small gaming console that is made in python!
 
-ArtSystem has 1300+ lines on code!!!!!!!
+ArtSystem has 1750+ lines on code!!!!!!!
 
 And lots of interesting features and Games!
 
@@ -40,6 +40,8 @@ What things does ArtSystem have?
 * FAST Upgrading
 * Lag Free System
 * Working Web Browser
+* System Restore
+* Web Security
 
 And More!
 
@@ -60,7 +62,7 @@ What will you see next from us?!?!?!?
 * Python 1 (for some games)
 * Pygame (For Python 1 Games)
 * Internet (for store and installations)
-* Python Imports (sys, os, random, time, subprocess, psutil)
+* Python Imports (sys, os, random, time, subprocess, webbrowser)
 
 # Need Help?
 
