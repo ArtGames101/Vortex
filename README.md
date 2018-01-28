@@ -2,6 +2,9 @@
 
 ![Version](https://img.shields.io/badge/Version-v10.9-blue.svg?style=social)   ![Size](https://img.shields.io/badge/ArtSystem%20Size-1.6%20MB-green.svg)
 
+# UPDATES
+
+v11.0 may be the last Vortex Update!
 
 # Verification code
 
