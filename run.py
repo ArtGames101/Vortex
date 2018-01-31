@@ -1,9 +1,9 @@
 # (c) ArtGames101 2017 - 2018
 # This Console was created by ArtGames101 and is under copyright notice!
 
-# 
+# v11.0 is the last version but there will be software updates!
 
-import sys, os, random, time, subprocess
+import sys, os, random, time, subprocess, webbrowser
 import urllib
 import config as c
 from data import gold as g
@@ -22,13 +22,15 @@ except:
     pass
 
 # Version
-vr = "10.9"
+vr = "11.0"
 version = "v{}-Stable".format(vr)
 # Next Version
-nextup = "v11.0-Stable"
-
-error = open("log/lasterror.txt", "w")
-start = open("log/startlog.txt", "w")
+nextup = "11.0"
+try:
+    error = open("log/lasterror.txt", "w")
+    start = open("log/startlog.txt", "w")
+except:
+    pass
 try:
     webb = open("web/name.py", "w")
     webb.write("name = '{}'".format(logind.USERNAME))
@@ -89,6 +91,8 @@ def clear_screen():
 def user_choice():
     return input("\n>>> ").lower().strip()
 
+def adconsole():
+    return input("\nArtSystem:~ $ ").lower().strip()
 
 def new():
     clear_screen()
@@ -96,15 +100,15 @@ def new():
        subprocess.call(('notify-send', 'ArtSystem Verification', 'Please enter your 6 digit code!'))
     except:
         pass
-    print("(A) ArtSystem {}\n"
-          "==========================".format(vr))
+    print("(A) ArtSystem Vortex {}\n"
+          "===========================".format(vr))
     print("\n"
           "Please enter your 6 digit verification code\n"
           "to continue!")
     print("\n"
           "?: Get it from the ArtSystem Github")
     choice = user_choice()
-    if choice == "pa64ap":
+    if choice == "tmxbni":
         confirm = open("data/anew.py", "w")
         confirm.write("new = False")
         input("Verification code accepted!")
@@ -116,7 +120,7 @@ def new():
 
 def neww():
     clear_screen()
-    print("(A) ArtSystem {}\n"
+    print("(A) ArtSystem Vortex {}\n"
           "==========================".format(vr))
     print("\n"
           "Welcome to ArtSystem!\n"
@@ -130,15 +134,59 @@ def neww():
     input("\n"
           "Enter")
     clear_screen()
-    print("(A) ArtSystem {}\n"
+    print("(A) ArtSystem Vortex {}\n"
           "==========================".format(vr))
     print("\n"
           "Your ArtSystem Comes with Restore Options and Web Protection!\n"
           "\n"
-          "Push Enter to Start ArtSystem!\n")
+          "Info : This is the last version of Vortex but there will be software updates!\n"
+          "\n"
+          "Push Enter to Register\n")
     input(".")
-    loading()
+    register()
 
+def fchangelog():
+    # After update changelog
+    clear_screen()
+    print("(A) ArtSystem Vortex {}\n"
+          "===========================".format(vr))
+    print("Changelog:\n"
+          "* Fixed Upgrade\n"
+          "* ArtSystem now looks cleaner\n"
+          " See Other Changelog for more info!")
+    input("\n"
+          "Enter")
+    sys.exit(1)
+
+def warn():
+    clear_screen()
+    print("(A) ArtSystem Vortex\n"
+          "==========================")
+    print("\n"
+          "Warning : Make Sure ArtSystem Vortex is in Full Screen\n"
+          "          to make Higher Quality and also everything fits in!\n"
+          "\n"
+          "Redirecting in 3...")
+    time.sleep(1)
+    clear_screen()
+    print("(A) ArtSystem Vortex\n"
+          "==========================")
+    print("\n"
+          "Warning : Make Sure ArtSystem Vortex is in Full Screen\n"
+          "          to make Higher Quality and also everything fits in!\n"
+          "\n"
+          "Redirecting in 2...")
+    time.sleep(1)
+    clear_screen()
+    print("(A) ArtSystem Vortex\n"
+          "==========================")
+    print("\n"
+          "Warning : Make Sure ArtSystem Vortex is in Full Screen\n"
+          "          to make Higher Quality and also everything fits in!\n"
+          "\n"
+          "Redirecting in 1...")
+    time.sleep(1)
+    loading()
 
 def loading():
     clear_screen()
@@ -373,7 +421,8 @@ def welcome():
         print("\n"
               "1. Register (Will Write Fresh data)\n"
               "2. Guest Account  (Use Guest account for now!)\n"
-              "3. Restore  (Restore 'LAST' Save data)")
+              "3. Restore  (Restore 'LAST' Save data)\n"
+              "4. Guide    (See the ArtSystem Guide)\n")
         choice = user_choice()
         if choice == "1":
             register()
@@ -381,6 +430,9 @@ def welcome():
             guestmain()
         if choice == "3":
             restore()
+        if choice == "4":
+            webbrowser.open("guide/help.html")
+            welcome()
     try:
         subprocess.call(('notify-send', 'ArtSystem Startup', 'ArtSystem has sucessfuly Loaded!'))
     except:
@@ -389,7 +441,7 @@ def welcome():
             clear_screen()
         except:
             pass
-        if img.usrimg == None:
+        if img.usrimg == "None":
             print("_________\n"
                   "         |\n"
                   "         | 1. [?] {}\n"
@@ -399,7 +451,7 @@ def welcome():
                   "         |\n"
                   "         | r. Register\n"
                   "         | 0. More Options\n"
-                  "_________|\n".format(logind.USERNAME))
+                  "_________|                                                    ArtSystem Codename 'Vortex'\n".format(logind.USERNAME))
             choice = user_choice()
             if choice == "1":
                 login()
@@ -407,6 +459,8 @@ def welcome():
                 guesta()
             if choice == "r":
                 register()
+            if choice == "admin":
+                adlogin()
             if choice == "0":
                 try:
                     mainmore()
@@ -424,7 +478,7 @@ def welcome():
                   "         |\n"
                   "         | r. Register\n"
                   "         | 0. More Options\n"
-                  "_________|\n".format(img.usrimg, logind.USERNAME))
+                  "_________|                                                    ArtSystem Codename 'Vortex'\n".format(img.usrimg, logind.USERNAME))
             choice = user_choice()
             if choice == "1":
                 login()
@@ -432,6 +486,8 @@ def welcome():
                 guesta()
             if choice == "r":
                 register()
+            if choice == "admin":
+                adlogin()
             if choice == "0":
                 try:
                     mainmore()
@@ -489,7 +545,10 @@ def restore():
     usr.write("USERNAME = '{}'".format(name.old))
     pa = open("user/loginpass.py", "w")
     pa.write("PASSWORD = '{}'".format(passw.old))
+    time.sleep(5)
     input("ArtSystem Restored!")
+    usr.close()
+    pa.close()
     subprocess.call((sys.executable, "run.py"))
     
 def wshutdown():
@@ -528,7 +587,9 @@ def guesta():
           " Guest Account \n"
           "===============\n")
     print("\n"
-          "Are you sure you want to login as a guest?")
+          "Are you sure you want to login as a guest?\n"
+          "\n"
+          "You wont be able to: Surf the net, Shop or Change Settings!")
     print("1. Yes    | 2. No")
     choice = user_choice()
     if choice == "1":
@@ -536,7 +597,46 @@ def guesta():
     if choice == "2":
         welcome()
 
-    
+def adlogin():
+    clear_screen()
+    print("=========\n"
+          " Welcome \n"
+          "=========\n")
+    print("Administrator")
+    print("\n"
+          "Password\n"
+          "\n"
+          "_____________\n"
+          "\n"
+          "[0. Switch User]")
+    choice = user_choice()
+    if choice == "0":
+        welcome()
+    if choice == "vortex":
+        admin()
+    else:
+        adloginf()
+def adloginf():
+    clear_screen()
+    print("=========\n"
+          " Welcome \n"
+          "=========\n")
+    print("Administrator")
+    print("\n"
+          "Password\n"
+          "\n"
+          "_____________\n"
+          "\n"
+          "[0. Switch User]")
+    print("\n"
+          "Incorrect Password!")
+    choice = user_choice()
+    if choice == "0":
+        welcome()
+    if choice == "vortex":
+        admin()
+    else:
+        adloginf()
 def login():
     clear_screen()
     print("=========\n"
@@ -551,8 +651,12 @@ def login():
     print("\n"
           "Password\n"
           "\n"
-          "_____________")
+          "_____________\n"
+          "\n"
+          "[0. Switch User]")
     choice = user_choice()
+    if choice == "0":
+        welcome()
     if choice == loginp.PASSWORD:
         main()
     else:
@@ -572,16 +676,24 @@ def loginf():
     print("\n"
           "Password\n"
           "\n"
-          "_____________")
+          "_____________\n"
+          "\n"
+          "[0. Switch User]")
     print("\n"
           "Incorrect Password!")
     choice = user_choice()
+    if choice == "0":
+        welcome()
     if choice == loginp.PASSWORD:
         main()
     else:
         loginf()
         
 def register():
+    try:
+        subprocess.call(('notify-send', 'Registration', 'Please do not exit until registration is over!'))
+    except:
+        pass
     clear_screen()
     print("==========\n"
           " Register \n"
@@ -605,9 +717,13 @@ def registerp():
     loginpw = open("user/loginpass.py", "w")
     print("Now Choose a password")
     choice = user_choice()
-    loginpw.write("PASSWORD = '{}'".format(choice))
-    loginpw.close()
-    registerl()
+    if choice == "":
+        input("That Password is restricted")
+        registerp()
+    else:
+        loginpw.write("PASSWORD = '{}'".format(choice))
+        loginpw.close()
+        registerl()
 
 def registerl():
     clear_screen()
@@ -656,6 +772,7 @@ def registeri():
           "3. ?!\n"
           "4. :)\n"
           "5. :4)\n"
+          "n. None\n"
           "c. Custom")
     choice = user_choice()
     usr = open("data/restore/name.py", "w")
@@ -666,6 +783,7 @@ def registeri():
     pas.close()
     if choice == "1":
         img.write("usrimg = ':D'")
+        clear_screen()
         input("Registration Complete!\n"
               "\n"
               "Enter")
@@ -673,6 +791,7 @@ def registeri():
         subprocess.call((sys.executable, "run.py"))
     if choice == "2":
         img.write("usrimg = '^.^'")
+        clear_screen()
         input("Registration Complete!\n"
               "\n"
               "Enter")
@@ -680,6 +799,7 @@ def registeri():
         subprocess.call((sys.executable, "run.py"))
     if choice == "3":
         img.write("usrimg = '?!'")
+        clear_screen()
         input("Registration Complete!\n"
               "\n"
               "Enter")
@@ -687,6 +807,7 @@ def registeri():
         subprocess.call((sys.executable, "run.py"))
     if choice == "4":
         img.write("usrimg = ':)'")
+        clear_screen()
         input("Registration Complete!\n"
               "\n"
               "Enter")
@@ -694,6 +815,15 @@ def registeri():
         subprocess.call((sys.executable, "run.py"))
     if choice == "5":
         img.write("usrimg = ':4)'")
+        clear_screen()
+        input("Registration Complete!\n"
+              "\n"
+              "Enter")
+        img.close()
+        subprocess.call((sys.executable, "run.py"))
+    if choice == "n":
+        img.write("usrimg = 'None'")
+        clear_screen()
         input("Registration Complete!\n"
               "\n"
               "Enter")
@@ -705,11 +835,68 @@ def registeri():
               "Recomended : Use 3 characters at most!")
         choice = user_choice()
         img.write("usrimg = '{}'".format(choice))
+        clear_screen()
         input("Registration Complete!\n"
               "\n"
               "Enter")
         img.close()
         subprocess.call((sys.executable, "run.py"))
+
+def admin():
+    clear_screen()
+    print("Administrative Console\n"
+          "========================\n"
+          "Type 'help' for help, Type 'exit' to Exit")
+    choice = adconsole()
+    if choice == "help":
+        clear_screen()
+        print("Administrative Console\n"
+              "========================\n")
+        print("\n"
+              "***Commands***\n"
+              "\n"
+              "help   (Shows Help)\n"
+              "uname  (Set Username)\n"
+              "upass  (Set Password)\n"
+              "stop   (Runs Stop Command)\n"
+              "exit   (Exits Console)\n"
+              "restrt (Restart ArtSystem)\n")
+        input("\n"
+              "Enter")
+        admin()
+    if choice == "restrt":
+        subprocess.call((sys.executable, "run.py"))
+    if choice == "uname":
+        clear_screen()
+        print("Administrative Console\n"
+              "========================\n")
+        print("Choose new name for Default User")
+        choice = user_choice()
+        n = open("user/logindata.py", "w")
+        n.write("USERNAME = '{}'".format(choice))
+        input("Set Username to {}".format(choice))
+        n.close()
+        admin()
+    if choice == "stop":
+        clear_screen()
+        print("Stopped all scripts")
+        sys.exit()
+    if choice == "upass":
+        clear_screen()
+        print("Administrative Console\n"
+              "========================\n")
+        print("Choose a new Password for Default User")
+        choice = user_choice()
+        u = open("user/loginpass.py", "w")
+        u.write("PASSWORD = '{}'".format(choice))
+        input("Set Password to {}".format(choice))
+        u.close()
+        admin()
+    if choice == "exit":
+        welcome()
+    else:
+        input("[ARTSYS] {}: command not found".format(choice))
+        admin()
 
 def main():
     if c.currentgame == "snake":
@@ -738,10 +925,10 @@ def main():
     if game in games:
         print("(o). Disc Game ({})".format(game))
     else:
-        print("\a")
+        print("(o). Disc Game (Choose)")
     print("c. Changelog")
     print("s. Store")
-    print("w. Py Web Browser")
+    print("w. Quantum WebBrowser")
     print("set. Settings")
     if santa == True:
         print("sa. Santa's Gift!")
@@ -755,22 +942,7 @@ def main():
           "|___________|________________________________________________________|")
     choice = user_choice()
     if choice == "(o)":
-        if game == "DocCreator":
-            subprocess.call((sys.executable, "DocCreator/run.py"))
-        if game == "VF":
-            subprocess.call((sys.executable, "VirtualFriend-VF/run.py"))
-        if game == "snake":
-            subprocess.call(("python", "snake.py"))
-        if game == "Tetris":
-            subprocess.call(("python", "tetris.py"))
-        if game == "squirrel":
-            subprocess.call(("python", "squirrel.py"))
-        if game == "BattleSim":
-            subprocess.call((sys.executable, "BattleSim/run.py"))
-        if game == "Santa":
-            subprocess.call((sys.executable, "SantasLittleHelper/santa.py"))
-        if game == "GunRush":
-            subprocess.call((sys.executable, "GunRush/run.py"))
+        gm()
     if choice == "s":
         if parent.PAPASS == None:
             store()
@@ -816,6 +988,177 @@ def main():
         logout()
     else:
         main()
+def gm():
+    if c.currentgame == "snake":
+        game = "snake"
+    if c.currentgame == "Tetris":
+        game = "Tetris"
+    elif c.currentgame == "BattleSim":
+        game = "BattleSim"
+    elif c.currentgame == "Santa":
+        game = "Santa"
+    elif c.currentgame == "squirrel":
+        game = "squirrel"
+    elif c.currentgame == "GunRush":
+        game = "GunRush"
+    elif c.currentgame == "DocCreator":
+        game = "DocCreator"
+    elif c.currentgame == "VF":
+        game = "VF"
+    else:
+        game = "None"
+    clear_screen()
+    print("Game Options\n"
+          "================")
+    print("\n"
+          "1. Play | 2. Select Different Game\n"
+          "          0. Back")
+    print("\n"
+          "If this does not work run the game through terminal!")
+    choice = user_choice()
+    if choice == "1":
+        if game == "DocCreator":
+            subprocess.call((sys.executable, "DocCreator/run.py"))
+        elif game == "VF":
+            subprocess.call((sys.executable, "VirtualFriend-VF/run.py"))
+        elif game == "snake":
+            subprocess.call(("python", "snake.py"))
+        elif game == "Tetris":
+            subprocess.call(("python", "tetris.py"))
+        elif game == "squirrel":
+            subprocess.call(("python", "squirrel.py"))
+        elif game == "BattleSim":
+            subprocess.call((sys.executable, "BattleSim/run.py"))
+        elif game == "Santa":
+            subprocess.call((sys.executable, "SantasLittleHelper/santa.py"))
+        elif game == "GunRush":
+            subprocess.call((sys.executable, "GunRush/run.py"))
+    if choice == "2":
+        gms()
+    if choice == "0":
+        main()
+
+def gms():
+    clear_screen()
+    print("Select a Game\n"
+          "================")
+    print("Warning : Choose a game you own!")
+    print("\n"
+          "1. Snake\n"
+          "2. BattleSim\n"
+          "3. Squirrel\n"
+          "4. Santa's Little Helper (CHRISTMAS ONLY!)\n"
+          "5. Tetris\n"
+          "6. Virtual Friend VF\n"
+          "7. GunRush\n"
+          "8. DocCreator")
+    choice = user_choice()
+    if choice == "1":
+        clear_screen()
+        g = open("config.py", "w")
+        g.write("try:\n"
+                "    from user import logindata as l\n"
+                "except:\n"
+                "    pass\n"
+                "try:\n"
+                "    NAMETAG = l.USERNAME\n"
+                "except:\n"
+                "    NAMETAG = None\n"
+                "currentgame = 'snake'\n")
+        input("Push Enter!")
+        g.close()
+        subprocess.call((sys.executable, "data/game.py"))
+    if choice == "2":
+        clear_screen()
+        g = open("config.py", "w")
+        g.write("try:\n"
+                "    from user import logindata as l\n"
+                "except:\n"
+                "    pass\n"
+                "try:\n"
+                "    NAMETAG = l.USERNAME\n"
+                "except:\n"
+                "    NAMETAG = None\n"
+                "currentgame = 'BattleSim'\n")
+        input("Push Enter!")
+        g.close()
+        subprocess.call((sys.executable, "data/game.py"))
+    if choice == "3":
+        clear_screen()
+        g = open("config.py", "w")
+        g.write("try:\n"
+                "    from user import logindata as l\n"
+                "except:\n"
+                "    pass\n"
+                "try:\n"
+                "    NAMETAG = l.USERNAME\n"
+                "except:\n"
+                "    NAMETAG = None\n"
+                "currentgame = 'squirrel'\n")
+        input("Push Enter!")
+        g.close()
+        subprocess.call((sys.executable, "data/game.py"))
+    if choice == "4":
+        clear_screen()
+        g = open("config.py", "w")
+        g.write("try:\n"
+                "    from user import logindata as l\n"
+                "except:\n"
+                "    pass\n"
+                "try:\n"
+                "    NAMETAG = l.USERNAME\n"
+                "except:\n"
+                "    NAMETAG = None\n"
+                "currentgame = 'Santa'\n")
+        input("Push Enter!")
+        g.close()
+        subprocess.call((sys.executable, "data/game.py"))
+    if choice == "5":
+        clear_screen()
+        g = open("config.py", "w")
+        g.write("try:\n"
+                "    from user import logindata as l\n"
+                "except:\n"
+                "    pass\n"
+                "try:\n"
+                "    NAMETAG = l.USERNAME\n"
+                "except:\n"
+                "    NAMETAG = None\n"
+                "currentgame = 'Tetris'\n")
+        input("Push Enter!")
+        g.close()
+        subprocess.call((sys.executable, "data/game.py"))
+    if choice == "6":
+        clear_screen()
+        g = open("config.py", "w")
+        g.write("try:\n"
+                "    from user import logindata as l\n"
+                "except:\n"
+                "    pass\n"
+                "try:\n"
+                "    NAMETAG = l.USERNAME\n"
+                "except:\n"
+                "    NAMETAG = None\n"
+                "currentgame = 'VF'\n")
+        input("Push Enter!")
+        g.close()
+        subprocess.call((sys.executable, "data/game.py"))
+    if choice == "7":
+        clear_screen()
+        g = open("config.py", "w")
+        g.write("try:\n"
+                "    from user import logindata as l\n"
+                "except:\n"
+                "    pass\n"
+                "try:\n"
+                "    NAMETAG = l.USERNAME\n"
+                "except:\n"
+                "    NAMETAG = None\n"
+                "currentgame = 'DocCreator'\n")
+        input("Push Enter!")
+        g.close()
+        subprocess.call((sys.executable, "data/game.py"))
+                    
 
 def guestmain():
     if c.currentgame == "snake":
@@ -847,7 +1190,7 @@ def guestmain():
         print("\a")
     print("c. Changelog")
     print("s. Store")
-    print("w. Py Web Browser")
+    print("w. Quantum WebBrowser")
     print("set. Settings")
     if santa == True:
         print("sa. Santa's Gift!")
@@ -875,29 +1218,13 @@ def guestmain():
         if game == "GunRush":
             subprocess.call((sys.executable, "GunRush/run.py"))
     if choice == "s":
-        if parent.PAPASS == None:
-            store()
-        else:
-            clear_screen()
-            print("Enter Parental Control Password")
-            choice = user_choice()
-            if choice == parent.PAPASS:
-                store()
-            else:
-                guestmain()
+        input("Guests Can't do that!")
+        guestmain()
     if choice == "c":
         changelog()
     if choice == "set":
-        if parent.PAPASS == None:
-            settings()
-        else:
-            clear_screen()
-            print("Enter Parental Control Password")
-            choice = user_choice()
-            if choice == parent.PAPASS:
-                settings()
-            else:
-                guestmain()
+        input("Guests Can't do that!")
+        guestmain()
     if choice == "sa":
         if santa == True:
             santagift()
@@ -906,7 +1233,8 @@ def guestmain():
     if choice == "n":
         notification()
     if choice == "w":
-        subprocess.call((sys.executable, "web/web.py"))
+        input("Guests Can't do that!")
+        guestmain()
     if choice == "=":
         guestmenu()
     if choice == "0":
@@ -931,7 +1259,7 @@ def notification():
         rewrite = open("log/notification.py", "w")
         rewrite.write("NOT = 'None'")
     if choice == "0":
-        main()
+        print(".")
     else:
         notification()
 def settings():
@@ -1159,6 +1487,7 @@ def usernamec():
     choice = user_choice()
     loginw.write("USERNAME = '{}'".format(choice))
     input("Done!")
+    loginw.close()
     settings()
 
 def passchange():
@@ -1172,6 +1501,7 @@ def passchange():
     choice = user_choice()
     loginpw.write("USERNAME = '{}'".format(choice))
     input("Done!")
+    loginpw.close()
     settings()
 
 
@@ -1339,6 +1669,40 @@ def changelog():
           "=================\n")
     print("Whats New in {}?".format(version))
     print("\n"
+          "* Added After Update Changelog\n"
+          "* Modified Webbrowser\n"
+          "* Fixed LOTS of bugs\n"
+          "* Updated Upgrade Module\n"
+          "* Added Startup Warning Message\n"
+          "* The WebBrowser has a name!\n"
+          "* Added Game Selection\n"
+          "* Added Admin Console (Can be found in login page)\n"
+          "* Fixed Guest Account (Bugs & Glitches)\n"
+          "* Fixed Restore\n"
+          "* Fixed Changelog Bugs\n"
+          "* Fixed Avatar Bugs\n"
+          "* You can now set your Avatar to None! (Shows avatar as [?])\n"
+          "* You can now exit Login Screen by pushing 0!\n"
+          "* Fixed Change Username option in settings\n"
+          "* Fixed Change Password option in settings\n"
+          "* You can now not use ' ' as a password\n"
+          "* Fixed Registration\n"
+          "* Updated Guest Account\n")
+    print("\n"
+          "<. Last Update   | 0. Back")
+    choice = user_choice()
+    if choice == "<":
+        lastupdate()
+    if choice == "0":
+        print(".")
+
+def lastupdate():
+    clear_screen()
+    print("=================\n"
+          "    Changelog    \n"
+          "=================\n")
+    print("Whats Was in the last update?!?!")
+    print("\n"
           "* Added New Main Screen\n"
           "* Added New Login Screen\n"
           "* Added Restore Option\n"
@@ -1349,25 +1713,7 @@ def changelog():
           "* Squashed Heaps of bugs\n"
           "* Guests now get their own Seperate Console!\n"
           "* Added Start Menu (May be removed!)")
-    print("\n"
-          "<. Last Update   | 0. Back")
-    choice = user_choice()
-    if choice == "<":
-        lastupdate()
-    if choice == "0":
-        main()
-
-def lastupdate():
-    clear_screen()
-    print("=================\n"
-          "    Changelog    \n"
-          "=================\n")
-    print("Whats Was in the last update?!?!")
-    print("\n"
-          "* Added Py Web Browser!\n"
-          "* Changed Register Data\n"
-          "* Changed Login Screen\n"
-          "* Fixed Bugs")
+    input("\nBack")
     changelog()
     
 def store():
@@ -1771,7 +2117,7 @@ if upg.stay == True:
         new()
     else:
         if safezone.NAME == None:
-            loading()
+            warn()
         else:
             subprocess.call((sys.executable, "safe.py"))  
 else:
