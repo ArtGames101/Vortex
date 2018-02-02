@@ -1,6 +1,6 @@
 # ArtSystem
 
-![Version](https://img.shields.io/badge/Version-v10.9-blue.svg?style=social)   ![Size](https://img.shields.io/badge/ArtSystem%20Size-1.6%20MB-green.svg)
+![Version](https://img.shields.io/badge/Version-v11.0-blue.svg?style=social)   ![Size](https://img.shields.io/badge/ArtSystem%20Size-500%20KB-green.svg)
 
 # UPDATES
 
@@ -8,7 +8,9 @@ v11.0 may be the last Vortex Update!
 
 # Verification code
 
-The Verification code is : pa64ap
+The Verification code is : 
+
+tmxbni
 
 # Introduction
 
@@ -16,7 +18,7 @@ Welcome to the ArtSystem Github!
 
 ArtSystem is a small gaming console that is made in python!
 
-ArtSystem has 1750+ lines on code!!!!!!!
+ArtSystem has 200+ lines on code!!!!!!!
 
 And lots of interesting features and Games!
 
@@ -52,7 +54,7 @@ And More!
 # Whats Next?
 What will you see next from us?!?!?!?
 
-* Music Player
+* Music Player (?)
 * Chat (?)
 * Game Creator (?)
 * Game Codes (?)
